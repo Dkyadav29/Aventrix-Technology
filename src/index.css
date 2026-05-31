@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Accessibility: skip link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: #0284c7;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-to-content:focus {
+  left: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Accessibility: visible keyboard focus across the app */
+:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 active:scale-95;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 active:scale-95;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900 dark:text-white;
+  }
+  
+  .section-subtitle {
+    @apply text-xl text-gray-600 dark:text-gray-300 text-center mb-12 max-w-2xl mx-auto;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  /* Glassmorphism Utilities */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10;
+  }
+
+  .glass-sm {
+    @apply backdrop-blur-sm bg-white/5 dark:bg-white/[0.02] border border-white/10 dark:border-white/5;
+  }
+
+  .glass-lg {
+    @apply backdrop-blur-lg bg-white/20 dark:bg-white/10 border border-white/30 dark:border-white/20;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/20 dark:bg-black/40 border border-black/20 dark:border-black/30;
+  }
+
+  /* Premium Gradients */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary-600 to-primary-700;
+  }
+
+  .gradient-secondary {
+    @apply bg-gradient-to-br from-secondary-600 to-secondary-700;
+  }
+
+  .gradient-premium {
+    @apply bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600;
+  }
+
+  /* Dark Mode Transitions */
+  .transition-theme {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
+  /* Premium Shadows */
+  .shadow-premium {
+    @apply shadow-2xl shadow-primary-600/20 dark:shadow-primary-600/10;
+  }
+
+  .shadow-glow {
+    @apply shadow-lg shadow-primary-500/30 dark:shadow-primary-500/20;
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-white {
+    @apply bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300;
+  }
+
+  .group-hover-scale {
+    @apply group-hover:scale-110 transition-transform duration-300;
+  }
+}

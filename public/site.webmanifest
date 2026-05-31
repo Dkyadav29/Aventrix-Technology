@@ -1,0 +1,16 @@
+{
+  "name": "Aventix",
+  "short_name": "Aventix",
+  "description": "Web, mobile, and AI development services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0a09",
+  "theme_color": "#0284c7",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

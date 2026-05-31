@@ -1,0 +1,17 @@
+export { default as Home } from './Home';
+export { default as PremiumHome } from './PremiumHome';
+export { default as WorldClass } from './WorldClass';
+export { default as About } from './About';
+export { default as Services } from './Services';
+export { default as PremiumServices } from './PremiumServices';
+export { default as ServiceDetails } from './ServiceDetails';
+export { default as Portfolio } from './Portfolio';
+export { default as PremiumPortfolio } from './PremiumPortfolio';
+export { default as Blog } from './Blog';
+export { default as BlogDetails } from './BlogDetails';
+export { default as Careers } from './Careers';
+export { default as Contact } from './Contact';
+export { default as PremiumContact } from './PremiumContact';
+export { default as FAQ } from './FAQ';
+export { default as PrivacyPolicy } from './PrivacyPolicy';
+export { default as TermsConditions } from './TermsConditions';
