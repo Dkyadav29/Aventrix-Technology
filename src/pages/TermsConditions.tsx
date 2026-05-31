@@ -68,9 +68,8 @@ const TermsConditions = () => {
       title: '13. Contact Information',
       content: 'If you have any questions about these Terms and Conditions, please contact us at:',
       items: [
-        'Email: legal@servicecompany.com',
-        'Phone: +1 (555) 123-4567',
-        'Address: 123 Business St, New York, NY 10001',
+        'Email: dkyadav2905@gmail.com',
+        'Phone / WhatsApp: +91 62030 75626',
       ],
     },
   ];

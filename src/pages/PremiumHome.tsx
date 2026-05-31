@@ -455,7 +455,7 @@ const PremiumHome = () => {
                 Get in Touch
               </Link>
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/916203075626"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition-all"
@@ -470,7 +470,7 @@ const PremiumHome = () => {
 
       {/* Floating WhatsApp Button */}
       <motion.a
-        href="https://wa.me/919999999999"
+        href="https://wa.me/916203075626"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}

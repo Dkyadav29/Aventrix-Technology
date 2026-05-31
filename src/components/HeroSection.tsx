@@ -162,7 +162,7 @@ const HeroSection = ({
             
             {showWhatsApp && (
               <a
-                href="https://wa.me/919999999999?text=I%20want%20to%20discuss%20my%20project"
+                href="https://wa.me/916203075626?text=I%20want%20to%20discuss%20my%20project"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/20 dark:border-white/10 text-white rounded-lg font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-300"

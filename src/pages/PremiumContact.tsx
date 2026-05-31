@@ -67,19 +67,19 @@ const PremiumContact = () => {
                   {
                     icon: <FiMail size={32} />,
                     label: 'Email',
-                    value: 'hello@buildhub.io',
-                    link: 'mailto:hello@buildhub.io',
+                    value: 'dkyadav2905@gmail.com',
+                    link: 'mailto:dkyadav2905@gmail.com',
                   },
                   {
                     icon: <FiPhone size={32} />,
-                    label: 'Phone',
-                    value: '+1 (555) 123-4567',
-                    link: 'tel:+15551234567',
+                    label: 'Phone / WhatsApp',
+                    value: '+91 62030 75626',
+                    link: 'tel:+916203075626',
                   },
                   {
                     icon: <FiMapPin size={32} />,
                     label: 'Location',
-                    value: 'San Francisco, CA',
+                    value: 'India — Remote, Worldwide',
                     link: '#',
                   },
                 ].map((item, index) => (
@@ -108,7 +108,7 @@ const PremiumContact = () => {
 
               {/* WhatsApp CTA */}
               <motion.a
-                href="https://wa.me/919999999999?text=I%20want%20to%20discuss%20my%20project"
+                href="https://wa.me/916203075626?text=I%20want%20to%20discuss%20my%20project"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
@@ -275,7 +275,7 @@ const PremiumContact = () => {
                 <FiArrowRight size={24} />
               </button>
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/916203075626"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition-all"

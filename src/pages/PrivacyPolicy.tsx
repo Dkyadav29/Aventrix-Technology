@@ -56,9 +56,8 @@ const PrivacyPolicy = () => {
       title: '10. Contact Us',
       content: 'If you have questions or concerns about our Privacy Policy or our privacy practices, please contact us at:',
       items: [
-        'Email: privacy@servicecompany.com',
-        'Phone: +1 (555) 123-4567',
-        'Address: 123 Business St, New York, NY 10001',
+        'Email: dkyadav2905@gmail.com',
+        'Phone / WhatsApp: +91 62030 75626',
       ],
     },
   ];
