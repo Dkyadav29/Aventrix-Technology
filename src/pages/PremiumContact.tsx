@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import HeroSection from '@components/HeroSection';
 import GlassCard from '@components/GlassCard';
 import Seo from '@components/Seo';

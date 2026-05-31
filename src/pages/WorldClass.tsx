@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
   FiArrowRight,
   FiSmartphone,
@@ -17,7 +16,7 @@ import {
   FiActivity,
 } from 'react-icons/fi';
 import { Section, SectionTitle, Grid } from '@components/Premium/Section';
-import { PremiumCard, Feature, Stat } from '@components/Premium/Cards';
+import { PremiumCard, Stat } from '@components/Premium/Cards';
 import { PremiumButton, Badge } from '@components/Premium/Button';
 
 const WorldClass = () => {
