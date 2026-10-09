@@ -10,14 +10,16 @@ interface SectionProps {
 const PADDING_MAP = {
   sm: 'py-12 md:py-16',
   md: 'py-16 md:py-24',
-  lg: 'py-24 md:py-32',
-  xl: 'py-32 md:py-40',
+  lg: 'py-20 md:py-28',
+  xl: 'py-24 md:py-36',
 };
 
+// The dark and gradient variants are always dark, so they carry the `dark`
+// class to make everything inside them render with dark-mode styles.
 const VARIANT_MAP = {
-  default: 'bg-white dark:bg-gray-900',
-  dark: 'bg-gray-900 dark:bg-black text-white',
-  gradient: 'bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white dark:from-black dark:via-gray-950 dark:to-black',
+  default: 'bg-white dark:bg-gray-950',
+  dark: 'dark bg-gray-950 text-white',
+  gradient: 'dark bg-gradient-to-br from-gray-950 via-[#0a1230] to-gray-950 text-white',
 };
 
 export const Section = ({
@@ -51,17 +53,17 @@ export const SectionTitle = ({
   className = '',
 }: SectionTitleProps) => {
   return (
-    <div className={`${centered ? 'text-center' : ''} mb-16 md:mb-20 ${className}`}>
+    <div className={`${centered ? 'text-center' : ''} mb-12 md:mb-16 ${className}`}>
       {subtitle && (
-        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+        <p className="eyebrow mb-4">
           {subtitle}
         </p>
       )}
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
         {title}
       </h2>
       {description && (
-        <p className={`mt-6 text-lg md:text-xl ${centered ? 'mx-auto max-w-2xl' : ''} text-gray-600 dark:text-gray-300 leading-relaxed`}>
+        <p className={`mt-4 text-lg ${centered ? 'mx-auto max-w-2xl' : ''} text-gray-600 dark:text-gray-300 leading-relaxed`}>
           {description}
         </p>
       )}
@@ -79,14 +81,14 @@ interface GridProps {
 const GAP_MAP = {
   sm: 'gap-4 md:gap-6',
   md: 'gap-6 md:gap-8',
-  lg: 'gap-8 md:gap-12',
+  lg: 'gap-6 md:gap-10',
 };
 
 const COL_MAP = {
   1: 'grid-cols-1',
   2: 'md:grid-cols-2',
-  3: 'md:grid-cols-2 lg:grid-cols-3',
-  4: 'md:grid-cols-2 lg:grid-cols-4',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-2 lg:grid-cols-4',
 };
 
 export const Grid = ({ children, cols = 3, gap = 'md', className = '' }: GridProps) => {

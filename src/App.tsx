@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Navbar, Footer } from '@components/index';
+import { MotionConfig } from 'framer-motion';
+import { Navbar, Footer, FloatingActions } from '@components/index';
 
 const PremiumHome = lazy(() => import('@pages/PremiumHome'));
 const WorldClass = lazy(() => import('@pages/WorldClass'));
@@ -15,13 +16,31 @@ const PremiumContact = lazy(() => import('@pages/PremiumContact'));
 const FAQ = lazy(() => import('@pages/FAQ'));
 const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy'));
 const TermsConditions = lazy(() => import('@pages/TermsConditions'));
+const NotFound = lazy(() => import('@pages/NotFound'));
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // Route changes should jump, not animate, regardless of CSS smooth scrolling
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    if (!hash) return;
+
+    // Links like /portfolio#work: the lazy-loaded page may not have rendered
+    // yet, so poll briefly for the target section before giving up.
+    let attempts = 0;
+    const timer = window.setInterval(() => {
+      const target = document.querySelector(hash);
+      attempts += 1;
+      if (target) {
+        target.scrollIntoView({ block: 'start' });
+        window.clearInterval(timer);
+      } else if (attempts >= 40) {
+        window.clearInterval(timer);
+      }
+    }, 50);
+    return () => window.clearInterval(timer);
+  }, [pathname, hash]);
 
   return null;
 };
@@ -39,48 +58,43 @@ const RouteFallback = () => (
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Navbar />
-      <main id="main-content" className="min-h-screen" tabIndex={-1}>
-        <Suspense fallback={<RouteFallback />}>
-          <Routes>
-            {/* Main Pages */}
-            <Route path="/" element={<PremiumHome />} />
-            <Route path="/world-class" element={<WorldClass />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<PremiumServices />} />
-            <Route path="/services/:id" element={<ServiceDetails />} />
-            <Route path="/portfolio" element={<PremiumPortfolio />} />
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <ScrollToTop />
+        <Navbar />
+        <main id="main-content" className="min-h-screen" tabIndex={-1}>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              {/* Main Pages */}
+              <Route path="/" element={<PremiumHome />} />
+              <Route path="/world-class" element={<WorldClass />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<PremiumServices />} />
+              <Route path="/services/:id" element={<ServiceDetails />} />
+              <Route path="/portfolio" element={<PremiumPortfolio />} />
 
-            {/* Blog */}
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogDetails />} />
+              {/* Blog */}
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogDetails />} />
 
-            {/* Other Pages */}
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/contact" element={<PremiumContact />} />
-            <Route path="/faq" element={<FAQ />} />
+              {/* Other Pages */}
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/contact" element={<PremiumContact />} />
+              <Route path="/faq" element={<FAQ />} />
 
-            {/* Legal Pages */}
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsConditions />} />
+              {/* Legal Pages */}
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsConditions />} />
 
-            {/* 404 - Not Found */}
-            <Route
-              path="*"
-              element={
-                <div className="container-custom py-20 text-center">
-                  <h1 className="text-5xl font-bold mb-4">404</h1>
-                  <p className="text-xl text-gray-600">Page not found</p>
-                </div>
-              }
-            />
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
-    </Router>
+              {/* 404 - Not Found */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+        <FloatingActions />
+      </Router>
+    </MotionConfig>
   );
 }
 

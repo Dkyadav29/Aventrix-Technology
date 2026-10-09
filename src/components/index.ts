@@ -8,3 +8,7 @@ export { default as GlassCard } from './GlassCard';
 export { default as ServiceCard } from './ServiceCard';
 export { default as StatCard } from './StatCard';
 export { default as Seo } from './Seo';
+export { default as Logo } from './Logo';
+export { default as SectionHeading } from './SectionHeading';
+export { default as CTASection } from './CTASection';
+export { default as FloatingActions } from './FloatingActions';

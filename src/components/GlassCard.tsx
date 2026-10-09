@@ -9,6 +9,14 @@ interface GlassCardProps {
   variant?: 'default' | 'primary' | 'secondary';
 }
 
+const variants = {
+  default: 'bg-white border-gray-200 dark:bg-white/[0.04] dark:border-white/10',
+  primary:
+    'bg-gradient-to-br from-primary-50/80 to-white border-primary-100 dark:from-primary-400/10 dark:to-white/[0.02] dark:border-primary-400/20',
+  secondary:
+    'bg-gradient-to-br from-secondary-50/80 to-white border-secondary-100 dark:from-secondary-400/10 dark:to-white/[0.02] dark:border-secondary-400/20',
+};
+
 const GlassCard = ({
   children,
   className = '',
@@ -16,27 +24,25 @@ const GlassCard = ({
   delay = 0,
   variant = 'default',
 }: GlassCardProps) => {
-  const variants = {
-    default: 'bg-white/10 border border-white/20 dark:bg-white/5 dark:border-white/10',
-    primary: 'bg-primary-500/10 border border-primary-500/20 dark:bg-primary-600/10 dark:border-primary-600/20',
-    secondary: 'bg-secondary-500/10 border border-secondary-500/20 dark:bg-secondary-600/10 dark:border-secondary-600/20',
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay }}
-      whileHover={hover ? { y: -5, transition: { duration: 0.3 } } : {}}
-      className={`
-        rounded-2xl backdrop-blur-md p-6 md:p-8
-        ${variants[variant]}
-        transition-all duration-300
-        hover:shadow-2xl
-        ${className}
-      `}
+      className="h-full"
     >
-      {children}
+      {/* Hover lift lives on the inner element so it doesn't fight the entrance transform */}
+      <div
+        className={`
+          h-full rounded-2xl border p-6 md:p-8 shadow-card dark:backdrop-blur-md
+          ${variants[variant]}
+          ${hover ? 'surface-hover' : ''}
+          ${className}
+        `}
+      >
+        {children}
+      </div>
     </motion.div>
   );
 };

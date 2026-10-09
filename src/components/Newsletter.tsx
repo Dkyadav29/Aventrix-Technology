@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { FiCheckCircle, FiMail } from 'react-icons/fi';
 import Button from './Button';
 
 const Newsletter = () => {
@@ -22,53 +23,62 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-primary-600 via-primary-700 to-secondary-700 py-24 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full -ml-48 -mb-48" />
-      </div>
-      <div className="container-custom relative z-10">
+    <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-900/40">
+      <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
+          className="dark relative overflow-hidden rounded-3xl bg-gray-950 px-6 py-12 md:px-16 md:py-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Stay Ahead With Industry Insights
-          </h2>
-          <p className="text-lg text-primary-50 mb-10">
-            Get expert tips, industry trends, and exclusive updates delivered to your inbox. Join 5000+ industry leaders.
-          </p>
+          <div className="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
+          <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-primary-500/25 blur-3xl" aria-hidden="true" />
+          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-secondary-600/25 blur-3xl" aria-hidden="true" />
 
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-green-100 text-green-800 px-6 py-4 rounded-lg"
-            >
-              ✓ Thank you for subscribing!
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-300"
-              />
-              <Button
-                variant="secondary"
-                size="md"
-                loading={loading}
-                type="submit"
-              >
-                Subscribe
-              </Button>
-            </form>
-          )}
+          <div className="relative z-10 max-w-2xl mx-auto text-center">
+            <span className="icon-tile mb-6">
+              <FiMail />
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+              Stay Ahead With Industry Insights
+            </h2>
+            <p className="text-lg text-gray-300 mb-8">
+              Get expert tips, industry trends, and exclusive updates delivered to your inbox. Join 5000+ industry leaders.
+            </p>
+
+            <div aria-live="polite">
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="inline-flex items-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-6 py-4 font-medium text-emerald-300"
+                >
+                  <FiCheckCircle size={20} />
+                  Thank you for subscribing!
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <label htmlFor="newsletter-email" className="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="newsletter-email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="field-input flex-1"
+                  />
+                  <Button variant="primary" size="md" loading={loading} type="submit">
+                    Subscribe
+                  </Button>
+                </form>
+              )}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

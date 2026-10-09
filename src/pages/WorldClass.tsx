@@ -18,6 +18,8 @@ import {
 import { Section, SectionTitle, Grid } from '@components/Premium/Section';
 import { PremiumCard, Stat } from '@components/Premium/Cards';
 import { PremiumButton, Badge } from '@components/Premium/Button';
+import { whatsappLink } from '@utils/site';
+import Seo from '@components/Seo';
 
 const WorldClass = () => {
   // Animated background elements
@@ -38,6 +40,11 @@ const WorldClass = () => {
 
   return (
     <div className="overflow-hidden">
+      <Seo
+        title="Build. Scale. Automate. Grow."
+        description="High-performance apps, automation systems, and digital growth solutions for ambitious teams."
+        path="/world-class"
+      />
       {/* Hero Section */}
       <Section variant="gradient" padding="xl" className="relative overflow-hidden">
         <BgBlob delay={0} x="top-20" y="right-0" />
@@ -82,11 +89,11 @@ const WorldClass = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <PremiumButton variant="primary" size="lg">
+              <PremiumButton variant="primary" size="lg" to="/contact">
                 Start Your Project
                 <FiArrowRight size={20} />
               </PremiumButton>
-              <PremiumButton variant="outline" size="lg">
+              <PremiumButton variant="outline" size="lg" to="/portfolio">
                 View Our Work
               </PremiumButton>
             </motion.div>
@@ -119,6 +126,7 @@ const WorldClass = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
@@ -131,6 +139,7 @@ const WorldClass = () => {
                 key={company}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 className="text-gray-400 dark:text-gray-500 font-semibold text-sm"
               >
@@ -220,6 +229,7 @@ const WorldClass = () => {
                 key={group.category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: groupIdx * 0.1 }}
               >
                 <h3 className="text-2xl font-bold text-white mb-8">{group.category}</h3>
@@ -232,7 +242,6 @@ const WorldClass = () => {
                       description={service.description}
                       delay={idx * 0.05}
                       variant="outline"
-                      className="border-gray-600 hover:border-primary-500/50"
                     />
                   ))}
                 </Grid>
@@ -287,6 +296,7 @@ const WorldClass = () => {
               key={item.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
             >
               <PremiumCard
@@ -354,9 +364,10 @@ const WorldClass = () => {
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
               >
-                <div className="group relative overflow-hidden rounded-xl border border-gray-600 bg-white/5 backdrop-blur-sm p-6 hover:border-primary-500/50 transition-all duration-300">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 hover:border-primary-400/40 hover:-translate-y-1 transition-all duration-300">
                   <div className="mb-4">
                     <Badge variant="primary">{project.result}</Badge>
                   </div>
@@ -412,6 +423,7 @@ const WorldClass = () => {
               key={testimonial.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
               <PremiumCard
@@ -472,6 +484,7 @@ const WorldClass = () => {
                   key={item.step}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                   className="flex gap-6 md:gap-8"
                 >
@@ -511,6 +524,7 @@ const WorldClass = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
             Ready to Build Your Next Big Project?
@@ -519,23 +533,31 @@ const WorldClass = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="text-xl text-gray-300 mb-10"
           >
-            Let s discuss how we can help you achieve your goals with technology
+            Let's discuss how we can help you achieve your goals with technology
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <PremiumButton variant="primary" size="lg">
+            <PremiumButton variant="primary" size="lg" to="/contact">
               Get Free Consultation
               <FiArrowRight size={20} />
             </PremiumButton>
-            <PremiumButton variant="secondary" size="lg">
+            <PremiumButton
+              variant="secondary"
+              size="lg"
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FiMessageSquare size={20} />
               Chat on WhatsApp
             </PremiumButton>

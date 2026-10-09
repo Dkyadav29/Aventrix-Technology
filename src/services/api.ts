@@ -1,8 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 import type { ApiResponse, ContactFormData } from '../types/index';
 
+import { API_BASE_URL } from './config';
+
+export { isApiConfigured } from './config';
+
 // Create axios instance
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) || 'https://api.example.com';
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,

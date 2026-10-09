@@ -8,11 +8,10 @@ interface CardProps {
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ children, className = '', hover = true }, ref) => {
-    const hoverClass = hover ? 'hover:shadow-2xl hover:-translate-y-2 hover:border-primary-200' : '';
     return (
       <div
         ref={ref}
-        className={`bg-white rounded-xl p-8 shadow-lg border border-gray-100 transition-all duration-300 ${hoverClass} ${className}`}
+        className={`surface p-6 md:p-8 text-gray-900 dark:text-gray-100 ${hover ? 'surface-hover' : ''} ${className}`}
       >
         {children}
       </div>

@@ -1,9 +1,57 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
-import Card from '@components/Card';
+import { FiArrowLeft, FiCalendar, FiClock, FiUser } from 'react-icons/fi';
+import SectionHeading from '@components/SectionHeading';
 import Newsletter from '@components/Newsletter';
+import Seo from '@components/Seo';
 import { formatDate } from '@utils/helpers';
+
+type Block =
+  | { type: 'h2' | 'h3' | 'p'; text: string }
+  | { type: 'code'; text: string }
+  | { type: 'ol'; items: string[] };
+
+// Turns the lightweight markdown used for post bodies into renderable blocks
+const parseContent = (content: string): Block[] => {
+  const blocks: Block[] = [];
+  const lines = content.trim().split('\n');
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i].trim();
+
+    if (!line) {
+      i += 1;
+    } else if (line.startsWith('```')) {
+      const code: string[] = [];
+      i += 1;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        code.push(lines[i]);
+        i += 1;
+      }
+      i += 1;
+      blocks.push({ type: 'code', text: code.join('\n') });
+    } else if (line.startsWith('### ')) {
+      blocks.push({ type: 'h3', text: line.slice(4) });
+      i += 1;
+    } else if (line.startsWith('## ')) {
+      blocks.push({ type: 'h2', text: line.slice(3) });
+      i += 1;
+    } else if (/^\d+\.\s/.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+\.\s/, ''));
+        i += 1;
+      }
+      blocks.push({ type: 'ol', items });
+    } else {
+      blocks.push({ type: 'p', text: line });
+      i += 1;
+    }
+  }
+
+  return blocks;
+};
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -76,138 +124,159 @@ React 18 is a significant step forward in React's evolution. Embrace these new f
     ],
   };
 
+  const blocks = parseContent(blogPost.content);
+  const firstParagraph = blocks.find((b) => b.type === 'p');
+  const excerpt = firstParagraph && 'text' in firstParagraph ? firstParagraph.text : blogPost.title;
+
   return (
-    <div>
-      {/* Back Button */}
-      <div className="bg-gray-50 py-4">
-        <div className="container-custom">
-          <Link to="/blog" className="flex items-center gap-2 text-primary-600 hover:gap-4 transition-all">
+    <div className="bg-white dark:bg-gray-950">
+      <Seo
+        title={blogPost.title}
+        description={excerpt}
+        path={`/blog/${blogPost.id}`}
+        type="article"
+      />
+      {/* Article Header */}
+      <section className="section-muted border-b border-gray-200 dark:border-white/10 py-10 md:py-16">
+        <div className="container-custom max-w-3xl">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 mb-8 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:gap-3 transition-all"
+          >
             <FiArrowLeft /> Back to Blog
           </Link>
-        </div>
-      </div>
 
-      {/* Article Header */}
-      <section className="py-12 bg-gray-50 border-b">
-        <div className="container-custom max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="mb-6">
-              <span className="text-sm font-semibold text-primary-600 uppercase">
-                {blogPost.category}
+            <span className="chip-primary mb-5">{blogPost.category}</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900 dark:text-white">
+              {blogPost.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-300">
+              <span className="inline-flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+                <FiUser size={15} aria-hidden="true" />
+                {blogPost.author}
               </span>
-            </div>
-            <h1 className="text-5xl font-bold mb-6">{blogPost.title}</h1>
-            <div className="flex items-center justify-between text-gray-600">
-              <div>
-                <p className="font-semibold">{blogPost.author}</p>
-                <p className="text-sm">
-                  {formatDate(blogPost.date)} • {blogPost.readTime} min read
-                </p>
-              </div>
-              <div className="text-6xl">{blogPost.image}</div>
+              <span className="inline-flex items-center gap-2">
+                <FiCalendar size={15} aria-hidden="true" />
+                {formatDate(blogPost.date)}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <FiClock size={15} aria-hidden="true" />
+                {blogPost.readTime} min read
+              </span>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Article Content */}
-      <section className="py-12">
+      <section className="py-12 md:py-16">
         <div className="container-custom max-w-3xl">
           <motion.article
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="prose prose-lg max-w-none"
+            className="space-y-5 text-lg leading-relaxed text-gray-700 dark:text-gray-300"
           >
-            <div className="whitespace-pre-wrap text-gray-700 leading-relaxed">
-              {blogPost.content}
-            </div>
+            {blocks.map((block, index) => {
+              switch (block.type) {
+                case 'h2':
+                  return (
+                    <h2 key={index} className="!mt-12 text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white">
+                      {block.text}
+                    </h2>
+                  );
+                case 'h3':
+                  return (
+                    <h3 key={index} className="!mt-8 text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
+                      {block.text}
+                    </h3>
+                  );
+                case 'code':
+                  return (
+                    <pre
+                      key={index}
+                      tabIndex={0}
+                      className="overflow-x-auto rounded-2xl border border-gray-800 bg-gray-950 dark:bg-black/40 dark:border-white/10 p-5 text-sm leading-7 text-gray-100"
+                    >
+                      <code className="font-mono">{block.text}</code>
+                    </pre>
+                  );
+                case 'ol':
+                  return (
+                    <ol key={index} className="list-decimal space-y-2 pl-6 marker:font-semibold marker:text-primary-600 dark:marker:text-primary-300">
+                      {block.items.map((item) => (
+                        <li key={item} className="pl-1">{item}</li>
+                      ))}
+                    </ol>
+                  );
+                default:
+                  return <p key={index}>{block.text}</p>;
+              }
+            })}
           </motion.article>
 
           {/* Tags */}
-          <div className="mt-12 pt-8 border-t">
-            <div className="flex flex-wrap gap-2">
-              {['React', 'React 18', 'JavaScript', 'Web Development'].map((tag, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary-50 cursor-pointer transition-colors"
-                >
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
+            <ul className="flex flex-wrap gap-2" aria-label="Tags">
+              {['React', 'React 18', 'JavaScript', 'Web Development'].map((tag) => (
+                <li key={tag} className="chip !px-4 !py-2 !text-sm">
                   #{tag}
-                </motion.span>
+                </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Author Info */}
+          <div className="surface mt-10 flex flex-col sm:flex-row gap-5 sm:items-center p-6 md:p-8">
+            <span className="icon-tile !h-16 !w-16 !rounded-full !text-2xl">
+              <FiUser />
+            </span>
+            <div className="flex-1">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Written by</p>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{blogPost.author}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                Experienced web developer and technical writer passionate about sharing knowledge with the community.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Author Info */}
-      <section className="py-12 bg-gray-50">
-        <div className="container-custom max-w-3xl">
-          <Card className="md:flex gap-6 items-center">
-            <div className="text-6xl mb-4 md:mb-0">👨‍💼</div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold mb-2">{blogPost.author}</h3>
-              <p className="text-gray-600 mb-4">
-                Experienced web developer and technical writer passionate about sharing knowledge with the community.
-              </p>
-              <div className="flex gap-4">
-                <a href="#" className="text-primary-600 hover:underline">LinkedIn</a>
-                <a href="#" className="text-primary-600 hover:underline">Twitter</a>
-                <a href="#" className="text-primary-600 hover:underline">Website</a>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       {/* Related Posts */}
-      <section className="py-20">
+      <section className="section section-muted">
         <div className="container-custom">
-          <h2 className="section-title">Related Articles</h2>
+          <SectionHeading eyebrow="Keep Reading" title="Related Articles" />
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {blogPost.relatedPosts.map((post, index) => (
               <motion.div
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Link to={`/blog/${post.id}`}>
-                  <Card className="cursor-pointer h-full">
-                    <div className="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg p-8 text-center flex items-center justify-center h-40 mb-4">
-                      <div className="text-5xl">{post.image}</div>
-                    </div>
-                    <h3 className="font-bold text-lg">{post.title}</h3>
-                  </Card>
+                <Link
+                  to={`/blog/${post.id}`}
+                  className="group surface surface-hover block h-full overflow-hidden"
+                >
+                  <div className="relative flex h-40 items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-700">
+                    <div className="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
+                    <span className="relative text-5xl transition-transform duration-500 group-hover:scale-110" aria-hidden="true">
+                      {post.image}
+                    </span>
+                  </div>
+                  <h3 className="p-6 text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+                    {post.title}
+                  </h3>
                 </Link>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
-        <div className="container-custom text-center">
-          <h2 className="text-4xl font-bold mb-6">Subscribe to Our Newsletter</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Get the latest articles and insights delivered to your inbox
-          </p>
-          <form className="max-w-md mx-auto flex gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-300"
-            />
-            <button className="btn-primary">Subscribe</button>
-          </form>
         </div>
       </section>
 

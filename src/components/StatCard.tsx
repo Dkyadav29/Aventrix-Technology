@@ -9,15 +9,16 @@ interface StatCardProps {
 const StatCard = ({ number, label, delay = 0 }: StatCardProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="text-center"
+      className="text-center px-4"
     >
-      <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-2">
+      <div className="font-display text-3xl md:text-4xl font-extrabold text-gradient mb-1">
         {number}
       </div>
-      <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base font-medium">
+      <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base font-medium">
         {label}
       </p>
     </motion.div>

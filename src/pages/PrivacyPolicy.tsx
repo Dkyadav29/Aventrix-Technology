@@ -1,11 +1,12 @@
-import { motion } from 'framer-motion';
+import LegalLayout from '@components/LegalLayout';
 import Newsletter from '@components/Newsletter';
+import Seo from '@components/Seo';
 
 const PrivacyPolicy = () => {
   const sections = [
     {
       title: '1. Introduction',
-      content: 'Welcome to ServiceCo. We are committed to protecting your privacy and ensuring you have a positive experience on our website. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website.',
+      content: 'Welcome to Aventix. We are committed to protecting your privacy and ensuring you have a positive experience on our website. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website.',
     },
     {
       title: '2. Information We Collect',
@@ -38,7 +39,7 @@ const PrivacyPolicy = () => {
     },
     {
       title: '6. Your Rights',
-      content: 'You have the right to access, correct, or delete your personal information. You can manage your preferences regarding marketing communications. To exercise these rights, please contact us at privacy@servicecompany.com.',
+      content: 'You have the right to access, correct, or delete your personal information. You can manage your preferences regarding marketing communications. To exercise these rights, please contact us at dkyadav2905@gmail.com.',
     },
     {
       title: '7. Cookies',
@@ -63,69 +64,27 @@ const PrivacyPolicy = () => {
   ];
 
   return (
-    <div>
-      {/* Header */}
-      <section className="py-12 bg-primary-600 text-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-5xl font-bold mb-4">Privacy Policy</h1>
-            <p className="text-primary-100">
-              Last Updated: January 2024
-            </p>
-          </motion.div>
+    <>
+      <Seo
+        title="Privacy Policy"
+        description="How Aventix collects, uses, and protects your information."
+        path="/privacy"
+      />
+      <LegalLayout title="Privacy Policy" lastUpdated="January 2024" sections={sections}>
+        {/* Additional Notice */}
+        <div className="mt-12 rounded-2xl border border-primary-200 dark:border-primary-400/20 bg-primary-50 dark:bg-primary-400/10 p-6">
+          <h3 className="text-lg font-bold text-primary-800 dark:text-primary-200 mb-2">
+            GDPR Compliance
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            If you are located in the European Union or European Economic Area, you have specific rights under the General Data Protection Regulation (GDPR). We comply with all applicable GDPR requirements.
+          </p>
         </div>
-      </section>
-
-      {/* Content */}
-      <section className="py-20">
-        <div className="container-custom max-w-3xl prose prose-lg">
-          <div className="space-y-8">
-            {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <h2 className="text-2xl font-bold text-primary-600 mb-3">
-                  {section.title}
-                </h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {section.content}
-                </p>
-                {section.items && (
-                  <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    {section.items.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Additional Notice */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="mt-12 p-6 bg-blue-50 border-l-4 border-primary-600 rounded"
-          >
-            <h3 className="text-lg font-bold text-primary-600 mb-2">
-              GDPR Compliance
-            </h3>
-            <p className="text-gray-700">
-              If you are located in the European Union or European Economic Area, you have specific rights under the General Data Protection Regulation (GDPR). We comply with all applicable GDPR requirements.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      </LegalLayout>
 
       {/* Newsletter */}
       <Newsletter />
-    </div>
+    </>
   );
 };
 

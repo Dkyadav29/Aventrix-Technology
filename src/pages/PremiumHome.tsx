@@ -4,8 +4,76 @@ import HeroSection from '@components/HeroSection';
 import GlassCard from '@components/GlassCard';
 import ServiceCard from '@components/ServiceCard';
 import StatCard from '@components/StatCard';
+import SectionHeading from '@components/SectionHeading';
+import CTASection from '@components/CTASection';
+import ProcessSteps from '@components/ProcessSteps';
 import Seo from '@components/Seo';
-import { FiCode, FiSmartphone, FiZap, FiLink2, FiCpu, FiArrowRight, FiCheck, FiMessageCircle, FiMail } from 'react-icons/fi';
+import ProjectMock from '@components/ProjectMock';
+import { SERVICES } from '../constants/services';
+import { PROJECTS } from '../constants/projects';
+import {
+  FiZap,
+  FiArrowRight,
+  FiCheck,
+  FiBriefcase,
+  FiTarget,
+  FiTool,
+  FiShield,
+  FiUsers,
+  FiAward,
+  FiHeart,
+  FiTag,
+  FiSearch,
+  FiClipboard,
+  FiLock,
+  FiMessageCircle,
+} from 'react-icons/fi';
+
+const featuredServices = SERVICES.slice(0, 6);
+
+const reasons = [
+  { icon: <FiZap />, title: 'Fast Delivery', desc: 'Agile sprints with regular progress updates — no ghosting, no surprises' },
+  { icon: <FiBriefcase />, title: 'Transparent Pricing', desc: 'Clear, fixed quotes tailored to your scope — no hidden fees, no surprise invoices' },
+  { icon: <FiTarget />, title: 'Direct Partnership', desc: 'Work directly with our team — no account managers, no slide decks, no handoffs' },
+  { icon: <FiTool />, title: 'Modern Tech Stack', desc: 'React, Next.js, React Native, Node.js, WordPress — battle-tested, modern tools' },
+  { icon: <FiShield />, title: 'Honest Communication', desc: 'We tell you exactly where things stand — the good, the blockers, and the fixes' },
+  { icon: <FiUsers />, title: 'Long-Term Partnership', desc: 'Post-launch support and ongoing collaboration as your product grows' },
+];
+
+const featuredProjects = PROJECTS.slice(0, 3);
+
+const differentiators = [
+  {
+    icon: <FiAward />,
+    title: 'Quality-First Engineering',
+    desc: 'Clean architecture, modern stacks, full documentation, and code we\'re proud to hand off. Built to last, not to ship-and-forget.',
+  },
+  {
+    icon: <FiHeart />,
+    title: 'Your Project, Our Priority',
+    desc: 'A focused engagement — direct attention from the team actually building your product, from kickoff through delivery.',
+  },
+  {
+    icon: <FiTag />,
+    title: 'Fair, Project-Based Pricing',
+    desc: 'Custom quotes scoped to your project — no inflated retainers, no surprise overages. You pay for value delivered.',
+  },
+];
+
+const steps = [
+  { num: '01', title: 'Understand', desc: 'We listen carefully to understand exactly what you need' },
+  { num: '02', title: 'Plan', desc: 'Clear timeline, honest estimate, no guesswork' },
+  { num: '03', title: 'Build', desc: 'Regular updates so you\'re never left in the dark' },
+  { num: '04', title: 'Deliver', desc: 'Clean code, full handover, ongoing support' },
+];
+
+const pricingPoints = [
+  { icon: <FiSearch />, title: 'Scope First', desc: 'We understand your requirements fully before quoting anything.' },
+  { icon: <FiClipboard />, title: 'Clear Breakdown', desc: 'You get an itemized quote — every cost explained upfront.' },
+  { icon: <FiLock />, title: 'Fixed Price', desc: 'Once agreed, the price is locked. No surprise invoices.' },
+];
+
+const included = ['100% Code Ownership', 'Clean Architecture', 'Full Documentation', 'Post-Launch Support'];
 
 const PremiumHome = () => {
   const servicesJsonLd = {
@@ -29,7 +97,7 @@ const PremiumHome = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="bg-white dark:bg-gray-950">
       <Seo
         title="Web, Mobile & AI Development Services"
         description="Aventix builds websites, Android & iOS apps, WordPress sites, API integrations, software & load testing, and AI-powered solutions for startups and businesses."
@@ -38,27 +106,21 @@ const PremiumHome = () => {
       />
       {/* Hero Section */}
       <HeroSection
-        title="Web, Mobile & AI Products — Built to Deliver"
-        subtitle="Aventix Development Studio"
-        description="We design and engineer fast, reliable digital products — from websites and mobile apps to WordPress, API integrations, and AI features."
-        showWhatsApp={true}
+        variant="home"
+        subtitle="Build • Automate • Scale"
+        title="Digital Products"
+        titleAccent="Built for What's Next."
+        tagline="Web. Mobile. AI. APIs."
+        description="Aventix helps businesses design, build and scale high-performance digital products with modern engineering, AI and API-first architecture."
+        primaryCta={{ label: 'Start a Project', to: '/contact' }}
+        secondaryCta={{ label: 'View Our Work', to: '/portfolio' }}
+        trustPoints={['Production-ready', 'API-first', 'Built to scale']}
       />
 
       {/* Quick Stats */}
-      <section className="py-16 md:py-20 bg-gradient-to-r from-gray-900 dark:from-black via-primary-900 to-gray-900 dark:to-black relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <motion.div
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-            }}
-            transition={{ duration: 20, repeat: Infinity }}
-            className="absolute inset-0"
-          />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+      <section className="relative z-10 -mt-8 md:-mt-10" aria-label="At a glance">
+        <div className="container-custom">
+          <div className="surface grid grid-cols-2 md:grid-cols-4 gap-y-8 py-8 md:py-10 md:divide-x divide-gray-200 dark:divide-white/10 dark:bg-gray-900 max-w-5xl mx-auto">
             <StatCard number="5+" label="Tech Stacks" />
             <StatCard number="100%" label="Dedicated" delay={0.1} />
             <StatCard number="Fast" label="Turnaround" delay={0.2} />
@@ -68,114 +130,53 @@ const PremiumHome = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white dark:from-gray-900 to-gray-50 dark:to-gray-950">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-              What We Build
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              End-to-end product engineering across web, mobile, and AI
-            </p>
-          </motion.div>
+      <section className="section">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Services"
+            title="What We Build"
+            description="End-to-end product engineering across web, mobile, and AI"
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
-            {[
-              {
-                icon: <FiCode size={40} className="text-primary-400" />,
-                title: 'Web Development',
-                description: 'React, Next.js, Node.js — clean, fast, and scalable web apps',
-              },
-              {
-                icon: <FiSmartphone size={40} className="text-secondary-400" />,
-                title: 'Mobile Apps',
-                description: 'Cross-platform apps for iOS & Android with React Native',
-              },
-              {
-                icon: <FiZap size={40} className="text-primary-400" />,
-                title: 'Automation',
-                description: 'Scripts and bots to automate your repetitive workflows',
-              },
-              {
-                icon: <FiLink2 size={40} className="text-secondary-400" />,
-                title: 'API Integration',
-                description: 'Connect your app to any third-party service or API',
-              },
-              {
-                icon: <FiCpu size={40} className="text-primary-400" />,
-                title: 'AI Features',
-                description: 'ChatGPT and AI integrations to make your product smarter',
-              },
-              {
-                icon: <FiZap size={40} className="text-secondary-400" />,
-                title: 'UI/UX Design',
-                description: 'Clean, responsive, and user-friendly interface design',
-              },
-            ].map((service, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+            {featuredServices.map((service, index) => (
               <ServiceCard
-                key={index}
-                icon={service.icon}
+                key={service.id}
+                icon={<service.icon />}
                 title={service.title}
                 description={service.description}
-                delay={index * 0.1}
+                href={`/services/${service.id}`}
+                delay={index * 0.08}
               />
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-primary-600/50 transition-all"
-            >
+          <div className="text-center">
+            <Link to="/services" className="btn-primary">
               View All Services
               <FiArrowRight size={20} />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Why Choose Me */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-gray-50 dark:from-gray-950 to-white dark:to-gray-900">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-              Why Choose Aventix?
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              A focused studio that treats your product like our own
-            </p>
-          </motion.div>
+      {/* Why Choose Us */}
+      <section className="section section-muted">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Why Aventix"
+            title="Why Choose Aventix?"
+            description="A focused studio that treats your product like our own"
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: '⚡', title: 'Fast Delivery', desc: 'Agile sprints with regular progress updates — no ghosting, no surprises' },
-              { icon: '💼', title: 'Transparent Pricing', desc: 'Clear, fixed quotes tailored to your scope — no hidden fees, no surprise invoices' },
-              { icon: '🎯', title: 'Direct Partnership', desc: 'Work directly with our team — no account managers, no slide decks, no handoffs' },
-              { icon: '🛠️', title: 'Modern Tech Stack', desc: 'React, Next.js, React Native, Node.js, WordPress — battle-tested, modern tools' },
-              { icon: '🔒', title: 'Honest Communication', desc: 'We tell you exactly where things stand — the good, the blockers, and the fixes' },
-              { icon: '🤝', title: 'Long-Term Partnership', desc: 'Post-launch support and ongoing collaboration as your product grows' },
-            ].map((item, index) => (
-              <GlassCard key={index} delay={index * 0.1}>
-                <div className="text-4xl mb-4">{item.icon}</div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {reasons.map((item, index) => (
+              <GlassCard key={item.title} delay={index * 0.08}>
+                <span className="icon-tile mb-5">{item.icon}</span>
                 <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </GlassCard>
@@ -184,102 +185,76 @@ const PremiumHome = () => {
         </div>
       </section>
 
-      {/* Practice Projects / Portfolio Preview */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white dark:from-gray-900 to-gray-50 dark:to-gray-950">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-4"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-              Featured Work
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-3">
-              A look at the kind of products we design and engineer
-            </p>
-          </motion.div>
+      {/* Portfolio Preview */}
+      <section className="section">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Portfolio"
+            title="Featured Work"
+            description="A look at the kind of products we design and engineer"
+          />
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12 mb-12">
-            {[
-              { emoji: '🌤️', title: 'Weather Dashboard', tech: 'React • OpenWeather API • Tailwind' },
-              { emoji: '✅', title: 'Task Manager App', tech: 'React • Node.js • MongoDB' },
-              { emoji: '💬', title: 'Chat Application', tech: 'React • Socket.io • Node.js' },
-            ].map((project, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+            {featuredProjects.map((project, index) => (
               <motion.div
-                key={index}
+                key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <GlassCard variant="primary">
-                  <div className="text-6xl mb-4">{project.emoji}</div>
-                  <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {project.tech}
-                  </p>
-                </GlassCard>
+                <Link
+                  to="/portfolio#work"
+                  className="group surface surface-hover flex h-full flex-col overflow-hidden"
+                >
+                  <ProjectMock visual={project.visual} className="h-44" />
+                  <div className="p-6">
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {project.categories.slice(0, 1).map((c) => (
+                        <span key={c} className="chip-primary">
+                          {c}
+                        </span>
+                      ))}
+                      {project.kind === 'concept' && <span className="chip">Concept</span>}
+                    </div>
+                    <h3 className="text-lg font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+                      {project.title}
+                    </h3>
+                    <ul className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <li key={tech} className="chip">
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <Link
-              to="/portfolio"
-              className="inline-flex items-center gap-3 px-8 py-4 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg font-semibold hover:bg-primary-600/10 transition-all"
-            >
+          <div className="text-center">
+            <Link to="/portfolio" className="btn-outline">
               View All Projects
               <FiArrowRight size={20} />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Fresh Start / First Client Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-gray-50 dark:from-gray-950 to-white dark:to-gray-900">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-              Built Different. Built for You.
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              A boutique studio offering what large agencies can't — focus, ownership, and a direct line to the people building your product
-            </p>
-          </motion.div>
+      {/* What makes us different */}
+      <section className="section section-muted">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Our Approach"
+            title="Built Different. Built for You."
+            description="A boutique studio offering what large agencies can't — focus, ownership, and a direct line to the people building your product"
+          />
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                icon: '🛠️',
-                title: 'Quality-First Engineering',
-                desc: 'Clean architecture, modern stacks, full documentation, and code we\'re proud to hand off. Built to last, not to ship-and-forget.',
-              },
-              {
-                icon: '💡',
-                title: 'Your Project, Our Priority',
-                desc: 'A focused engagement — direct attention from the team actually building your product, from kickoff through delivery.',
-              },
-              {
-                icon: '💼',
-                title: 'Fair, Project-Based Pricing',
-                desc: 'Custom quotes scoped to your project — no inflated retainers, no surprise overages. You pay for value delivered.',
-              },
-            ].map((item, index) => (
-              <GlassCard key={index} delay={index * 0.1}>
-                <div className="text-4xl mb-4">{item.icon}</div>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {differentiators.map((item, index) => (
+              <GlassCard key={item.title} delay={index * 0.1}>
+                <span className="icon-tile mb-5">{item.icon}</span>
                 <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
@@ -293,196 +268,99 @@ const PremiumHome = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white dark:from-gray-900 to-gray-50 dark:to-gray-950">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-              How We Work
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Simple, transparent, and collaborative
-            </p>
-          </motion.div>
+      <section className="section">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Process"
+            title="How We Work"
+            description="Simple, transparent, and collaborative"
+          />
 
-          <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {[
-              { num: '01', title: 'Understand', desc: 'We listen carefully to understand exactly what you need' },
-              { num: '02', title: 'Plan', desc: 'Clear timeline, honest estimate, no guesswork' },
-              { num: '03', title: 'Build', desc: 'Regular updates so you\'re never left in the dark' },
-              { num: '04', title: 'Deliver', desc: 'Clean code, full handover, ongoing support' },
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <GlassCard variant="secondary" delay={index * 0.1}>
-                  <div className="text-4xl font-bold text-secondary-400 mb-4 opacity-50">
-                    {step.num}
-                  </div>
-                  <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {step.desc}
-                  </p>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
+          <ProcessSteps steps={steps} />
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="py-24 md:py-40 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-          >
-            <p className="text-primary-600 font-semibold uppercase tracking-widest mb-3">TRANSPARENT PRICING</p>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              Simple, Honest Pricing
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              No bloated retainers. No hidden fees. Just fair, fixed pricing for quality work.
-            </p>
-          </motion.div>
+      <section className="section section-muted">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Transparent Pricing"
+            title="Simple, Honest Pricing"
+            description="No bloated retainers. No hidden fees. Just fair, fixed pricing for quality work."
+          />
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border-2 border-primary-200 dark:border-primary-800/50 rounded-3xl p-10 md:p-14 text-center"
+              className="relative overflow-hidden rounded-3xl border border-primary-100 dark:border-primary-400/20 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-primary-400/10 dark:via-white/[0.02] dark:to-secondary-400/10 p-8 md:p-14 text-center shadow-card"
             >
-              <div className="text-6xl mb-6">💬</div>
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              <span className="icon-tile !h-16 !w-16 !text-3xl !rounded-2xl mb-6">
+                <FiMessageCircle />
+              </span>
+              <h3 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
                 Every Project is Unique — Let's Talk
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Tell us what you need and we'll send back a clear, honest quote. No vague estimates, no surprise invoices.
               </p>
 
-              <div className="grid sm:grid-cols-3 gap-6 mb-10">
-                {[
-                  { icon: '🔍', title: 'Scope First', desc: 'We understand your requirements fully before quoting anything.' },
-                  { icon: '📋', title: 'Clear Breakdown', desc: 'You get an itemized quote — every cost explained upfront.' },
-                  { icon: '🔒', title: 'Fixed Price', desc: 'Once agreed, the price is locked. No surprise invoices.' },
-                ].map((item, i) => (
+              <div className="grid sm:grid-cols-3 gap-5 mb-10 text-left">
+                {pricingPoints.map((item, i) => (
                   <motion.div
-                    key={i}
+                    key={item.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm"
+                    className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900/60 p-6"
                   >
-                    <div className="text-4xl mb-3">{item.icon}</div>
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">{item.title}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
+                    <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50 dark:bg-primary-400/10 text-xl text-primary-700 dark:text-primary-300">
+                      {item.icon}
+                    </span>
+                    <h4 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">{item.title}</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
 
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-2xl transition-all"
-                >
-                  Get a Free Quote <FiArrowRight className="inline ml-2" />
-                </motion.button>
+              <Link to="/contact" className="btn-primary btn-lg">
+                Get a Free Quote
+                <FiArrowRight size={20} />
               </Link>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-10 text-center bg-white dark:bg-gray-800/50 rounded-2xl p-8 border border-gray-200 dark:border-gray-700"
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="surface mt-8 p-8 text-center"
             >
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">What's Included in Every Project?</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {['100% Code Ownership', 'Clean Architecture', 'Full Documentation', 'Post-Launch Support'].map((item, i) => (
-                  <div key={i} className="flex items-center justify-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                    <FiCheck className="text-primary-600 w-4 h-4 flex-shrink-0" />
+              <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                {included.map((item) => (
+                  <li key={item} className="flex items-center justify-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-300">
+                      <FiCheck size={12} strokeWidth={3} />
+                    </span>
                     {item}
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute inset-0"
-          />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Ready to Build Something Together?
-            </h2>
-            <p className="text-xl text-white/90 mb-10">
-              Tell us about your project and get a free, no-obligation consultation. We'll respond within 24 hours.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary-600 rounded-lg font-bold hover:shadow-2xl transition-all hover:scale-105"
-              >
-                <FiMail size={24} />
-                Get in Touch
-              </Link>
-              <a
-                href="https://wa.me/916203075626"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition-all"
-              >
-                <FiMessageCircle size={24} />
-                Chat on WhatsApp
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Floating WhatsApp Button */}
-      <motion.a
-        href="https://wa.me/916203075626"
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-40 p-4 bg-green-500 text-white rounded-full shadow-2xl hover:shadow-3xl transition-all"
-        aria-label="Chat on WhatsApp"
-      >
-        <FiMessageCircle size={32} />
-      </motion.a>
+      <CTASection
+        title="Ready to Build Something Together?"
+        description="Tell us about your project and get a free, no-obligation consultation. We'll respond within 24 hours."
+        primaryLabel="Get in Touch"
+      />
     </div>
   );
 };

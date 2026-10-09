@@ -82,6 +82,9 @@ export interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
+  company?: string;
+  /** Service id from constants/services, when the visitor picked one */
+  service?: string;
   subject: string;
   message: string;
 }
