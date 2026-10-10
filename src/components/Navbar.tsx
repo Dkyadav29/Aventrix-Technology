@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
-import { FiMenu, FiX, FiMoon, FiSun, FiArrowRight } from 'react-icons/fi';
+import { FiMenu, FiX, FiMoon, FiSun, FiArrowRight, FiMail, FiPhone, FiClock } from 'react-icons/fi';
 import Logo from './Logo';
+import { SITE } from '@utils/site';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -79,6 +80,32 @@ const Navbar = () => {
           : 'bg-gray-950/60 border-white/5'
       }`}
     >
+      {/* Utility bar: contact details, desktop only, hidden once the page scrolls */}
+      <div
+        className={`hidden md:block overflow-hidden border-b border-white/5 transition-all duration-300 ${
+          isScrolled ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100'
+        }`}
+      >
+        <div className="container-custom flex h-9 items-center justify-between gap-6 text-xs text-gray-300">
+          <div className="flex items-center gap-6">
+            <a href={`mailto:${SITE.email}`} className="inline-flex items-center gap-1.5 hover:text-white transition-colors">
+              <FiMail size={13} className="text-primary-400" aria-hidden="true" />
+              {SITE.email}
+            </a>
+            <a href={SITE.phoneHref} className="inline-flex items-center gap-1.5 hover:text-white transition-colors">
+              <FiPhone size={13} className="text-primary-400" aria-hidden="true" />
+              {SITE.phoneDisplay}
+            </a>
+          </div>
+          <p className="inline-flex items-center gap-1.5">
+            <FiClock size={13} className="text-primary-400" aria-hidden="true" />
+            {SITE.hours}
+            <span className="mx-2 h-3 w-px bg-white/15" aria-hidden="true" />
+            <span className="text-primary-300">Free consultation, reply {SITE.responseTime.toLowerCase()}</span>
+          </p>
+        </div>
+      </div>
+
       <nav aria-label="Primary" className="container-custom">
         <div className="flex h-16 md:h-[4.5rem] items-center justify-between gap-4">
           {/* Logo */}

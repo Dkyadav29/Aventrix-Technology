@@ -9,6 +9,10 @@ import CTASection from '@components/CTASection';
 import ProcessSteps from '@components/ProcessSteps';
 import Seo from '@components/Seo';
 import ProjectMock from '@components/ProjectMock';
+import TechStack from '@components/TechStack';
+import Industries from '@components/Industries';
+import Accordion from '@components/Accordion';
+import { HOME_FAQS } from '../constants/faq';
 import { SERVICES } from '../constants/services';
 import { PROJECTS } from '../constants/projects';
 import {
@@ -80,7 +84,7 @@ const PremiumHome = () => {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: 'Aventix',
-    url: 'https://aventix.dev',
+    url: 'https://aventix.co.in',
     description:
       'Web development, Android & iOS apps, WordPress, API integration, software & load testing, and AI integration.',
     areaServed: 'Worldwide',
@@ -128,6 +132,9 @@ const PremiumHome = () => {
           </div>
         </div>
       </section>
+
+      {/* Tech stack */}
+      <TechStack />
 
       {/* Services Section */}
       <section className="section">
@@ -242,6 +249,22 @@ const PremiumHome = () => {
         </div>
       </section>
 
+      {/* Industries */}
+      <Industries />
+
+      {/* Process Section */}
+      <section className="section">
+        <div className="container-custom">
+          <SectionHeading
+            eyebrow="Process"
+            title="How We Work"
+            description="Simple, transparent, and collaborative"
+          />
+
+          <ProcessSteps steps={steps} />
+        </div>
+      </section>
+
       {/* What makes us different */}
       <section className="section section-muted">
         <div className="container-custom">
@@ -267,21 +290,8 @@ const PremiumHome = () => {
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="section">
-        <div className="container-custom">
-          <SectionHeading
-            eyebrow="Process"
-            title="How We Work"
-            description="Simple, transparent, and collaborative"
-          />
-
-          <ProcessSteps steps={steps} />
-        </div>
-      </section>
-
       {/* Pricing Section */}
-      <section className="section section-muted">
+      <section className="section">
         <div className="container-custom">
           <SectionHeading
             eyebrow="Transparent Pricing"
@@ -351,6 +361,28 @@ const PremiumHome = () => {
                 ))}
               </ul>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section section-muted" aria-labelledby="home-faq-heading">
+        <div className="container-custom">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16 items-start">
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading
+                eyebrow="FAQ"
+                title="Questions, Answered"
+                description="The things most clients ask before starting a project with us"
+                align="left"
+                className="!mb-6"
+              />
+              <Link to="/faq" className="btn-outline">
+                Read All FAQs
+                <FiArrowRight size={20} />
+              </Link>
+            </div>
+            <Accordion items={HOME_FAQS} />
           </div>
         </div>
       </section>

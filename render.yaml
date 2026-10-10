@@ -1,0 +1,63 @@
+# Render Blueprint for the Aventix static site (Vite build, served from ./dist).
+#
+# Security headers live here so they are version-controlled. Cloudflare sits in
+# front of Render and passes these headers through unchanged, so do NOT also
+# enable HSTS or add CSP Transform Rules in the Cloudflare dashboard, or the
+# site will send duplicate/conflicting policies.
+#
+# If the Render service was created from the dashboard (not from this file),
+# copy the "headers" and "routes" below into:
+#   Render dashboard -> the static site -> Redirects/Rewrites  (the rewrite)
+#   Render dashboard -> the static site -> Headers             (each header)
+services:
+  - type: web
+    name: aventix-website
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+
+    routes:
+      # Client-side routing: every unknown path serves the React app
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+    headers:
+      # --- Content Security Policy -------------------------------------------
+      # Allowed sources were taken from the actual app:
+      #   script-src  'self'  -> Vite bundles + /theme-init.js (no inline scripts)
+      #   style-src   Google Fonts stylesheet; React/Framer Motion set styles via
+      #               CSSOM, which CSP permits without 'unsafe-inline'
+      #   font-src    Google Fonts files
+      #   img-src     data: is needed for the Tailwind select-arrow SVG background
+      #   connect-src 'self' -> add the API origin here if VITE_API_URL is set
+      # To debug a violation, temporarily rename this header to
+      # Content-Security-Policy-Report-Only and watch the browser console.
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests"
+
+      # --- Referrer / transport ------------------------------------------------
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+
+      # Render serves custom domains over HTTPS only, and Cloudflare already
+      # redirects http:// to https://, so this header is only ever sent over TLS.
+      # includeSubDomains / preload are intentionally omitted until every
+      # subdomain has been verified on HTTPS.
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=31536000
+
+      # --- Companion hardening headers ----------------------------------------
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), payment=(), usb=()

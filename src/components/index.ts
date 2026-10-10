@@ -12,3 +12,6 @@ export { default as Logo } from './Logo';
 export { default as SectionHeading } from './SectionHeading';
 export { default as CTASection } from './CTASection';
 export { default as FloatingActions } from './FloatingActions';
+export { default as TechStack } from './TechStack';
+export { default as Industries } from './Industries';
+export { default as Accordion } from './Accordion';

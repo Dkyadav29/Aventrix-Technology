@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-const SITE_URL = 'https://aventix.dev';
+const SITE_URL = 'https://aventix.co.in';
 const SITE_NAME = 'Aventix';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
