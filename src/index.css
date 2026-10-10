@@ -167,12 +167,40 @@
     @apply rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] shadow-card;
   }
 
-  .surface-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-primary-300 dark:hover:border-primary-400/40;
+  /*
+   * Hover lift for cards. Three things keep it from flickering:
+   *  1. Only transform / shadow / border transition (not `all`), and the card is
+   *     promoted to its own compositor layer up front so Chrome doesn't
+   *     re-rasterize it every time the hover starts and ends.
+   *  2. An invisible ::after extends the hit area 4px below the card, the same
+   *     distance the card lifts, so the pointer can never land in the gap the
+   *     lift leaves behind (which otherwise toggles hover on/off in a loop).
+   *  3. The lift only runs on devices with a real hover pointer.
+   */
+  .surface-hover,
+  .card-hover {
+    @apply relative transition-[transform,box-shadow,border-color] duration-300 ease-out;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+  .surface-hover::after,
+  .card-hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: -0.25rem;
+    z-index: -1;
+  }
+
+  @media (hover: hover) {
+    .surface-hover:hover,
+    .card-hover:hover {
+      @apply shadow-card-hover border-primary-300 dark:border-primary-400/40;
+      transform: translateZ(0) translateY(-0.25rem);
+    }
   }
 
   .chip {

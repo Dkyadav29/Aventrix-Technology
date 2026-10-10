@@ -35,7 +35,7 @@ const GlassCard = ({
       {/* Hover lift lives on the inner element so it doesn't fight the entrance transform */}
       <div
         className={`
-          h-full rounded-2xl border p-6 md:p-8 shadow-card dark:backdrop-blur-md
+          h-full rounded-2xl border p-6 md:p-8 shadow-card
           ${variants[variant]}
           ${hover ? 'surface-hover' : ''}
           ${className}
