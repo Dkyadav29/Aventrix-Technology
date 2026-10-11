@@ -2,9 +2,9 @@
 export const SITE = {
   name: 'Aventix',
   email: 'dkyadav2905@gmail.com',
-  phoneDisplay: '+91 62030 75626',
-  phoneHref: 'tel:+916203075626',
-  whatsappNumber: '916203075626',
+  phoneDisplay: '+91 77630 34886',
+  phoneHref: 'tel:+917763034886',
+  whatsappNumber: '917763034886',
   location: 'India — Remote, Worldwide',
   // PLACEHOLDER: confirm real business hours
   hours: 'Mon – Sat, 10:00 – 19:00 IST',
