@@ -58,7 +58,7 @@ const PrivacyPolicy = () => {
       content: 'If you have questions or concerns about our Privacy Policy or our privacy practices, please contact us at:',
       items: [
         'Email: dkyadav2905@gmail.com',
-        'Phone / WhatsApp: +91 62030 75626',
+        'Phone / WhatsApp: +91 77630 34886',
       ],
     },
   ];

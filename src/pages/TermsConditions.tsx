@@ -70,7 +70,7 @@ const TermsConditions = () => {
       content: 'If you have any questions about these Terms and Conditions, please contact us at:',
       items: [
         'Email: dkyadav2905@gmail.com',
-        'Phone / WhatsApp: +91 62030 75626',
+        'Phone / WhatsApp: +91 77630 34886',
       ],
     },
   ];
