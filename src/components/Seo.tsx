@@ -10,6 +10,11 @@ export type SeoProps = {
   path?: string;
   image?: string;
   type?: 'website' | 'article';
+  /**
+   * Keep the page out of search results. Also drops the canonical and og:url,
+   * because a noindex page must not point crawlers at another URL as "the"
+   * version of itself.
+   */
   noIndex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 };
@@ -31,16 +36,20 @@ const Seo = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={url} />
-      {noIndex && <meta name="robots" content="noindex, nofollow" />}
+      {noIndex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <link rel="canonical" href={url} />
+      )}
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
+      {!noIndex && <meta property="og:url" content={url} />}
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={`${SITE_NAME} — web, mobile and AI development`} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

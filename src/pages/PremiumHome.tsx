@@ -11,6 +11,7 @@ import Seo from '@components/Seo';
 import ProjectMock from '@components/ProjectMock';
 import TechStack from '@components/TechStack';
 import Industries from '@components/Industries';
+import Testimonials from '@components/Testimonials';
 import Accordion from '@components/Accordion';
 import { HOME_FAQS } from '../constants/faq';
 import { SERVICES } from '../constants/services';
@@ -80,33 +81,12 @@ const pricingPoints = [
 const included = ['100% Code Ownership', 'Clean Architecture', 'Full Documentation', 'Post-Launch Support'];
 
 const PremiumHome = () => {
-  const servicesJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: 'Aventix',
-    url: 'https://aventix.co.in',
-    description:
-      'Web development, Android & iOS apps, WordPress, API integration, software & load testing, and AI integration.',
-    areaServed: 'Worldwide',
-    serviceType: [
-      'Web Development',
-      'Android App Development',
-      'iOS App Development',
-      'WordPress Development',
-      'Software Testing',
-      'Load Testing',
-      'API Integration',
-      'AI Integration',
-    ],
-  };
-
   return (
     <div className="bg-white dark:bg-gray-950">
       <Seo
         title="Web, Mobile & AI Development Services"
         description="Aventix builds websites, Android & iOS apps, WordPress sites, API integrations, software & load testing, and AI-powered solutions for startups and businesses."
         path="/"
-        jsonLd={servicesJsonLd}
       />
       {/* Hero Section */}
       <HeroSection
@@ -248,6 +228,9 @@ const PremiumHome = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials (renders only when the API returns approved entries) */}
+      <Testimonials />
 
       {/* Industries */}
       <Industries />

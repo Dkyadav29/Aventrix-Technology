@@ -51,6 +51,11 @@ services:
         name: Strict-Transport-Security
         value: max-age=31536000
 
+      # --- Caching: Vite emits content-hashed filenames under /assets ---------
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+
       # --- Companion hardening headers ----------------------------------------
       - path: /*
         name: X-Content-Type-Options

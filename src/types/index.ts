@@ -87,6 +87,58 @@ export interface ContactFormData {
   service?: string;
   subject: string;
   message: string;
+  /** Server-side CAPTCHA (see aventix-backend). Required when the API is configured. */
+  captcha_id?: string;
+  captcha_answer?: string;
+  captcha_token?: string;
+}
+
+/** Response of GET /api/captcha */
+export interface CaptchaChallenge {
+  captcha_id: string;
+  /** data:image/png;base64,... */
+  image: string;
+  expires_in: number;
+}
+
+/** GET /api/testimonials/invite/:token */
+export interface TestimonialInvite {
+  client_name: string;
+  company: string;
+  project: string;
+  expires_at: string;
+}
+
+/** POST /api/testimonials/submit */
+export interface TestimonialSubmission {
+  token: string;
+  author_name: string;
+  author_role?: string;
+  company?: string;
+  quote: string;
+  rating: number;
+  consent: boolean;
+}
+
+/** Public testimonial from GET /api/testimonials (approved + consented only) */
+export interface Testimonial {
+  id: number;
+  author_name: string;
+  author_role: string;
+  company: string;
+  quote: string;
+  rating: number;
+  featured: boolean;
+  date: string | null;
+}
+
+/** Error envelope returned by the backend for 4xx responses */
+export interface ApiError {
+  success: false;
+  error: string;
+  message?: string;
+  errors?: Record<string, string[]>;
+  retry_after?: number;
 }
 
 // API Response

@@ -135,6 +135,7 @@ React 18 is a significant step forward in React's evolution. Embrace these new f
         description={excerpt}
         path={`/blog/${blogPost.id}`}
         type="article"
+        noIndex
       />
       {/* Article Header */}
       <section className="section-muted border-b border-gray-200 dark:border-white/10 py-10 md:py-16">
