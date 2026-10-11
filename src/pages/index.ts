@@ -12,3 +12,4 @@ export { default as FAQ } from './FAQ';
 export { default as PrivacyPolicy } from './PrivacyPolicy';
 export { default as TermsConditions } from './TermsConditions';
 export { default as NotFound } from './NotFound';
+export { default as TestimonialSubmit } from './TestimonialSubmit';

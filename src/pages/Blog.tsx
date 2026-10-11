@@ -107,6 +107,8 @@ const Blog = () => {
         title="Blog — Insights on Web, Mobile & AI"
         description="Articles and tutorials on web development, mobile apps, WordPress, API integration, testing, and AI."
         path="/blog"
+        // Sample posts only (fictional authors, identical article for every id). Remove noIndex once real articles exist.
+        noIndex
       />
       {/* Hero */}
       <HeroSection

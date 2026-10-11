@@ -71,7 +71,7 @@ const About = () => {
   return (
     <div className="bg-white dark:bg-gray-950">
       <Seo
-        title="About Aventix — Web, Mobile & AI Development Studio"
+        title="About — Web, Mobile & AI Development Studio"
         description="Aventix is a focused development studio building websites, Android & iOS apps, WordPress sites, API integrations, software & load testing, and AI-powered solutions."
         path="/about"
       />

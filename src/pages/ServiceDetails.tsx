@@ -52,12 +52,37 @@ const ServiceDetails = () => {
   const faqItems = service.faq.map((f, i) => ({ id: `${service.id}-${i}`, question: f.q, answer: f.a }));
   const related = SERVICES.filter((s) => s.id !== service.id).slice(0, 3);
 
+  const pageUrl = `https://aventix.co.in/services/${service.id}`;
+  // Describes exactly what is on the page: a service offered by the organisation declared in index.html
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aventix.co.in/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://aventix.co.in/services' },
+        { '@type': 'ListItem', position: 3, name: service.title, item: pageUrl },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: service.title,
+      description: service.overview,
+      url: pageUrl,
+      serviceType: service.title,
+      areaServed: 'Worldwide',
+      provider: { '@id': 'https://aventix.co.in/#organization' },
+    },
+  ];
+
   return (
     <div className="bg-white dark:bg-gray-950">
       <Seo
         title={`${service.title} Services`}
         description={service.overview}
         path={`/services/${service.id}`}
+        jsonLd={jsonLd}
       />
 
       {/* Hero Section */}

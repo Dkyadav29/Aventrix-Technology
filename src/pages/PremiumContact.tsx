@@ -5,6 +5,7 @@ import SectionHeading from '@components/SectionHeading';
 import ProcessSteps from '@components/ProcessSteps';
 import CTASection from '@components/CTASection';
 import Seo from '@components/Seo';
+import type { ApiError } from '../types/index';
 import {
   FiMail,
   FiPhone,
@@ -165,8 +166,13 @@ const PremiumContact = () => {
         message: formData.message.trim(),
       });
       setOutcome('api');
-    } catch {
-      setSubmitError("We couldn't send your message right now. Please try again, or use email or WhatsApp below.");
+    } catch (err) {
+      const apiError = (err as { response?: { data?: ApiError } })?.response?.data;
+      if (apiError?.error === 'throttled') {
+        setSubmitError('Too many attempts. Please wait a minute and try again, or use email or WhatsApp below.');
+      } else {
+        setSubmitError("We couldn't send your message right now. Please try again, or use email or WhatsApp below.");
+      }
     } finally {
       setSubmitting(false);
     }

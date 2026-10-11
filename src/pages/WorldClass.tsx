@@ -44,6 +44,7 @@ const WorldClass = () => {
         title="Build. Scale. Automate. Grow."
         description="High-performance apps, automation systems, and digital growth solutions for ambitious teams."
         path="/world-class"
+        noIndex
       />
       {/* Hero Section */}
       <Section variant="gradient" padding="xl" className="relative overflow-hidden">

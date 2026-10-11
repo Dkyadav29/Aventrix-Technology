@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- Primary SEO -->
+    <!-- Primary SEO. Tags marked data-rh are per-page defaults that src/components/Seo.tsx
+         replaces at runtime (react-helmet-async only reconciles tags carrying that attribute). -->
     <title>Aventix — Web, Mobile & AI Development Services</title>
-    <meta name="description" content="Aventix builds websites, Android & iOS apps, WordPress sites, API integrations, software & load testing, and AI-powered solutions for startups and growing businesses." />
+    <meta name="description" data-rh="true" content="Aventix builds websites, Android & iOS apps, WordPress sites, API integrations, software & load testing, and AI-powered solutions for startups and growing businesses." />
     <meta name="keywords" content="web development, android app development, ios app development, wordpress development, api integration, load testing, software testing, ai integration, react developer, full stack developer" />
     <meta name="author" content="Aventix" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://aventix.co.in/" />
+    <meta name="robots" data-rh="true" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" data-rh="true" href="https://aventix.co.in/" />
 
     <!-- Theme & Icons -->
     <meta name="theme-color" content="#030712" media="(prefers-color-scheme: light)" />
@@ -21,21 +22,22 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Aventix" />
-    <meta property="og:title" content="Aventix — Web, Mobile & AI Development Services" />
-    <meta property="og:description" content="Websites, Android & iOS apps, WordPress, API integration, load testing, and AI integration — practical solutions, delivered with care." />
-    <meta property="og:url" content="https://aventix.co.in/" />
-    <meta property="og:image" content="https://aventix.co.in/og-image.png" />
+    <meta property="og:type" data-rh="true" content="website" />
+    <meta property="og:site_name" data-rh="true" content="Aventix" />
+    <meta property="og:title" data-rh="true" content="Aventix — Web, Mobile & AI Development Services" />
+    <meta property="og:description" data-rh="true" content="Websites, Android & iOS apps, WordPress, API integration, load testing, and AI integration — practical solutions, delivered with care." />
+    <meta property="og:url" data-rh="true" content="https://aventix.co.in/" />
+    <meta property="og:image" data-rh="true" content="https://aventix.co.in/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" data-rh="true" content="Aventix — web, mobile and AI development" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Aventix — Web, Mobile & AI Development Services" />
-    <meta name="twitter:description" content="Websites, Android & iOS apps, WordPress, API integration, load testing, and AI integration." />
-    <meta name="twitter:image" content="https://aventix.co.in/og-image.png" />
+    <meta name="twitter:card" data-rh="true" content="summary_large_image" />
+    <meta name="twitter:title" data-rh="true" content="Aventix — Web, Mobile & AI Development Services" />
+    <meta name="twitter:description" data-rh="true" content="Websites, Android & iOS apps, WordPress, API integration, load testing, and AI integration." />
+    <meta name="twitter:image" data-rh="true" content="https://aventix.co.in/og-image.png" />
 
     <!-- Performance hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,11 +56,32 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://aventix.co.in/#organization",
         "name": "Aventix",
-        "url": "https://aventix.co.in",
-        "logo": "https://aventix.co.in/favicon.svg",
-        "description": "Web, mobile, and AI development services including websites, Android/iOS apps, WordPress, API integration, load testing, and AI integration.",
-        "sameAs": []
+        "url": "https://aventix.co.in/",
+        "logo": "https://aventix.co.in/apple-touch-icon.png",
+        "image": "https://aventix.co.in/og-image.png",
+        "description": "Web, mobile, and AI development studio building websites, Android/iOS apps, WordPress sites, API integrations, software and load testing, and AI-powered features.",
+        "email": "dkyadav2905@gmail.com",
+        "telephone": "+916203075626",
+        "areaServed": "Worldwide",
+        "knowsAbout": [
+          "Web Development",
+          "Android App Development",
+          "iOS App Development",
+          "WordPress Development",
+          "API Integration",
+          "Software Testing",
+          "Load Testing",
+          "AI Integration"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "dkyadav2905@gmail.com",
+          "telephone": "+916203075626",
+          "availableLanguage": ["en", "hi"]
+        }
       }
     </script>
   </head>

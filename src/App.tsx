@@ -17,6 +17,7 @@ const FAQ = lazy(() => import('@pages/FAQ'));
 const PrivacyPolicy = lazy(() => import('@pages/PrivacyPolicy'));
 const TermsConditions = lazy(() => import('@pages/TermsConditions'));
 const NotFound = lazy(() => import('@pages/NotFound'));
+const TestimonialSubmit = lazy(() => import('@pages/TestimonialSubmit'));
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
@@ -81,6 +82,9 @@ function App() {
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<PremiumContact />} />
               <Route path="/faq" element={<FAQ />} />
+
+              {/* Client testimonial submission (single-use invite links) */}
+              <Route path="/testimonial/:token" element={<TestimonialSubmit />} />
 
               {/* Legal Pages */}
               <Route path="/privacy" element={<PrivacyPolicy />} />

@@ -4,8 +4,8 @@
   "description": "Web, mobile, and AI development services.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0c0a09",
-  "theme_color": "#0284c7",
+  "background_color": "#030712",
+  "theme_color": "#030712",
   "icons": [
     {
       "src": "/favicon.svg",
