@@ -57,13 +57,13 @@ const highlights = [
     icon: <FiUsers />,
     title: 'Long-Term',
     label: 'Partnership',
-    tile: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300',
+    tile: 'bg-secondary-50 text-secondary-700 dark:bg-secondary-400/10 dark:text-secondary-300',
   },
   {
     icon: <FiZap />,
     title: 'Fast',
     label: 'Turnaround',
-    tile: 'bg-amber-50 text-amber-700 dark:bg-amber-400/10 dark:text-amber-300',
+    tile: 'bg-primary-50 text-primary-700 dark:bg-primary-400/10 dark:text-primary-300',
   },
 ];
 

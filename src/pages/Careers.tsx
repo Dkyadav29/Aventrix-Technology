@@ -302,7 +302,7 @@ const Careers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-[#3b5fe0] to-secondary-700 px-6 py-14 md:px-16 md:py-20 text-center shadow-2xl shadow-primary-900/20"
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-secondary-500 to-secondary-700 px-6 py-14 md:px-16 md:py-20 text-center shadow-2xl shadow-primary-900/20"
           >
             <div className="absolute inset-0 bg-grid opacity-30" aria-hidden="true" />
             <div className="relative z-10 max-w-3xl mx-auto">

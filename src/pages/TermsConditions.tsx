@@ -84,8 +84,8 @@ const TermsConditions = () => {
       />
       <LegalLayout title="Terms & Conditions" lastUpdated="January 2024" sections={sections}>
         {/* Acknowledgment */}
-        <div className="mt-12 rounded-2xl border border-amber-200 dark:border-amber-400/20 bg-amber-50 dark:bg-amber-400/10 p-6">
-          <h3 className="text-lg font-bold text-amber-900 dark:text-amber-200 mb-2">
+        <div className="mt-12 rounded-2xl border border-primary-200 dark:border-primary-400/20 bg-primary-50 dark:bg-primary-400/10 p-6">
+          <h3 className="text-lg font-bold text-primary-900 dark:text-primary-200 mb-2">
             Important Acknowledgment
           </h3>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">

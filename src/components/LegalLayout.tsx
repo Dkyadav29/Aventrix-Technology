@@ -24,7 +24,7 @@ const LegalLayout = ({ title, lastUpdated, sections, children }: LegalLayoutProp
     <div className="bg-white dark:bg-gray-950">
       {/* Header */}
       <section className="dark relative overflow-hidden bg-gray-950 text-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-[#0a1230] to-gray-950" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-secondary-950 to-gray-950" aria-hidden="true" />
         <div className="absolute inset-0 bg-grid mask-fade opacity-60" aria-hidden="true" />
         <div className="container-custom relative z-10 py-14 md:py-20">
           <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-sm text-gray-400">

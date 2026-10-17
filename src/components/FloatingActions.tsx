@@ -65,7 +65,7 @@ const FloatingActions = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative h-14 w-14 inline-flex items-center justify-center rounded-full bg-[#1fa855] text-white shadow-xl shadow-green-900/30"
+              className="group relative h-14 w-14 inline-flex items-center justify-center rounded-full bg-whatsapp text-white shadow-xl shadow-whatsapp/30"
               aria-label="Chat on WhatsApp"
             >
               <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-1.5 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-white dark:text-gray-900">

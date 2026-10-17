@@ -38,7 +38,7 @@ const itemVariants = {
 /** Backdrop for inner-page headers */
 const PageBackdrop = () => (
   <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-    <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-[#0a1230] to-gray-950" />
+    <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-secondary-950 to-gray-950" />
     <div className="absolute inset-0 bg-grid mask-fade opacity-60" />
     <motion.div
       animate={{ x: [0, 60, 0], y: [0, 30, 0] }}
@@ -56,10 +56,10 @@ const PageBackdrop = () => (
 /** Quieter backdrop for the home hero: deep navy, a faint grid, two soft glows */
 const HomeBackdrop = () => (
   <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-    <div className="absolute inset-0 bg-[#050816]" />
+    <div className="absolute inset-0 bg-secondary-950" />
     <div className="absolute inset-0 bg-grid mask-fade opacity-40" />
-    <div className="absolute right-[-10%] top-[-20%] h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.16),transparent)]" />
-    <div className="absolute bottom-[-30%] right-[10%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(124,58,237,0.16),transparent)]" />
+    <div className="absolute right-[-10%] top-[-20%] h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,theme(colors.secondary.400/22%),transparent)]" />
+    <div className="absolute bottom-[-30%] right-[10%] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,theme(colors.primary.500/18%),transparent)]" />
     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/[0.03] to-transparent" />
   </div>
 );
@@ -136,7 +136,7 @@ const HeroSection = ({
   }
 
   return (
-    <section className="dark relative overflow-hidden bg-[#050816] text-white">
+    <section className="dark relative overflow-hidden bg-secondary-950 text-white">
       <HomeBackdrop />
 
       <div className="container-custom relative z-10 py-16 md:py-20 lg:py-28 xl:py-32">
@@ -146,7 +146,7 @@ const HeroSection = ({
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-[650px] mx-auto lg:mx-0 text-center lg:text-left"
+            className="max-w-[680px] mx-auto lg:mx-0 text-center lg:text-left"
           >
             {subtitle && (
               <motion.p variants={itemVariants} className="mb-6">
@@ -159,7 +159,7 @@ const HeroSection = ({
 
             <motion.h1
               variants={itemVariants}
-              className="font-display text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-extrabold leading-[1.05] tracking-tight text-white"
+              className="font-display text-4xl sm:text-5xl lg:text-[3rem] xl:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight text-white"
             >
               {title}
               {titleAccent && (

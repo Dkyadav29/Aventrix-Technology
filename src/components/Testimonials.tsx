@@ -6,7 +6,7 @@ import { isApiConfigured } from '@services/config';
 import type { Testimonial } from '../types/index';
 
 const Stars = ({ rating }: { rating: number }) => (
-  <span className="inline-flex items-center gap-0.5 text-amber-400" aria-label={`${rating} out of 5 stars`}>
+  <span className="inline-flex items-center gap-0.5 text-primary-400" aria-label={`${rating} out of 5 stars`}>
     {[1, 2, 3, 4, 5].map((n) => (
       <FiStar
         key={n}

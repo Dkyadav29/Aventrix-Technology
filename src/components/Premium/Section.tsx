@@ -19,7 +19,7 @@ const PADDING_MAP = {
 const VARIANT_MAP = {
   default: 'bg-white dark:bg-gray-950',
   dark: 'dark bg-gray-950 text-white',
-  gradient: 'dark bg-gradient-to-br from-gray-950 via-[#0a1230] to-gray-950 text-white',
+  gradient: 'dark bg-gradient-to-br from-gray-950 via-secondary-950 to-gray-950 text-white',
 };
 
 export const Section = ({

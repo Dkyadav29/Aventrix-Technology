@@ -132,7 +132,7 @@ const ProjectMock = ({ visual, className = '' }: ProjectMockProps) => {
   const Visual = VISUALS[visual];
   return (
     <div
-      className={`relative overflow-hidden bg-gradient-to-br from-primary-600 via-[#3b5fe0] to-secondary-700 ${className}`}
+      className={`relative overflow-hidden bg-gradient-to-br from-primary-600 via-secondary-500 to-secondary-700 ${className}`}
       aria-hidden="true"
     >
       <div className="absolute inset-0 bg-grid opacity-30" />

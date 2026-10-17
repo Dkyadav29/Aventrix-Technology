@@ -179,7 +179,7 @@ const TestimonialSubmit = () => {
 
           {phase === 'done' && (
             <div role="status" className="py-6 text-center">
-              <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-600 dark:text-emerald-300 mb-5">
+              <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-secondary-100 dark:bg-secondary-400/15 text-secondary-600 dark:text-secondary-300 mb-5">
                 <FiCheckCircle size={28} />
               </span>
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Thank you, {firstName}!</h1>
@@ -223,7 +223,7 @@ const TestimonialSubmit = () => {
                         aria-label={`${n} star${n > 1 ? 's' : ''}: ${RATING_LABELS[n]}`}
                         aria-pressed={fields.rating === n}
                         className={`p-1 transition-transform hover:scale-110 ${
-                          active ? 'text-amber-400' : 'text-gray-300 dark:text-gray-600'
+                          active ? 'text-primary-400' : 'text-gray-300 dark:text-gray-600'
                         }`}
                       >
                         <FiStar size={30} fill={active ? 'currentColor' : 'none'} />

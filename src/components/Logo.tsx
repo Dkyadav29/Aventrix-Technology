@@ -19,12 +19,12 @@ const Logo = ({ className = '', onDark = false }: LogoProps) => {
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#0ea5e9" />
-            <stop offset="1" stopColor="#7c3aed" />
+            <stop offset="0" stopColor="var(--color-primary)" />
+            <stop offset="1" stopColor="var(--color-secondary)" />
           </linearGradient>
         </defs>
         <rect width="64" height="64" rx="16" fill={`url(#${gradientId})`} />
-        <path d="M16 46 L32 16 L48 46 L41 46 L32 28 L23 46 Z" fill="#fff" />
+        <path d="M16 46 L32 16 L48 46 L41 46 L32 28 L23 46 Z" fill="white" />
       </svg>
       <span
         className={`font-display text-xl md:text-2xl font-extrabold tracking-tight ${

@@ -36,13 +36,14 @@ import {
 
 const featuredServices = SERVICES.slice(0, 6);
 
+// How the work is actually done. Keep these honest: every line is a commitment clients can hold us to.
 const reasons = [
-  { icon: <FiZap />, title: 'Fast Delivery', desc: 'Agile sprints with regular progress updates — no ghosting, no surprises' },
-  { icon: <FiBriefcase />, title: 'Transparent Pricing', desc: 'Clear, fixed quotes tailored to your scope — no hidden fees, no surprise invoices' },
-  { icon: <FiTarget />, title: 'Direct Partnership', desc: 'Work directly with our team — no account managers, no slide decks, no handoffs' },
-  { icon: <FiTool />, title: 'Modern Tech Stack', desc: 'React, Next.js, React Native, Node.js, WordPress — battle-tested, modern tools' },
-  { icon: <FiShield />, title: 'Honest Communication', desc: 'We tell you exactly where things stand — the good, the blockers, and the fixes' },
-  { icon: <FiUsers />, title: 'Long-Term Partnership', desc: 'Post-launch support and ongoing collaboration as your product grows' },
+  { icon: <FiTool />, title: 'Version control & code review', desc: 'Every change goes through Git and a pull-request review before it reaches your product.' },
+  { icon: <FiShield />, title: 'Testing before release', desc: 'Automated and manual testing on a staging environment, so releases ship without surprises.' },
+  { icon: <FiZap />, title: 'Weekly demos', desc: 'Short sprints with a working demo each week. You see progress, not status reports.' },
+  { icon: <FiBriefcase />, title: 'Fixed-scope quotes', desc: 'A written scope and a fixed price before work starts. Changes are quoted, never slipped in.' },
+  { icon: <FiTarget />, title: 'Documentation & handover', desc: 'Readable code, setup docs and full access to every repo and account we create for you.' },
+  { icon: <FiUsers />, title: 'Support after launch', desc: 'A post-launch support window on every project, then a maintenance plan if you want one.' },
 ];
 
 const featuredProjects = PROJECTS.slice(0, 3);
@@ -91,11 +92,11 @@ const PremiumHome = () => {
       {/* Hero Section */}
       <HeroSection
         variant="home"
-        subtitle="Build • Automate • Scale"
-        title="Digital Products"
-        titleAccent="Built for What's Next."
-        tagline="Web. Mobile. AI. APIs."
-        description="Aventix helps businesses design, build and scale high-performance digital products with modern engineering, AI and API-first architecture."
+        subtitle="Accepting new projects"
+        title="Web, Mobile & AI Software"
+        titleAccent="Engineered to Scale."
+        tagline="For startups, SMEs and product teams"
+        description="Aventix designs, builds and maintains production software for startups and growing businesses: web platforms, mobile apps, API integrations and AI features, delivered with clean code and clear communication."
         primaryCta={{ label: 'Start a Project', to: '/contact' }}
         secondaryCta={{ label: 'View Our Work', to: '/portfolio' }}
         trustPoints={['Production-ready', 'API-first', 'Built to scale']}
@@ -105,10 +106,10 @@ const PremiumHome = () => {
       <section className="relative z-10 -mt-8 md:-mt-10" aria-label="At a glance">
         <div className="container-custom">
           <div className="surface grid grid-cols-2 md:grid-cols-4 gap-y-8 py-8 md:py-10 md:divide-x divide-gray-200 dark:divide-white/10 dark:bg-gray-900 max-w-5xl mx-auto">
-            <StatCard number="5+" label="Tech Stacks" />
-            <StatCard number="100%" label="Dedicated" delay={0.1} />
-            <StatCard number="Fast" label="Turnaround" delay={0.2} />
-            <StatCard number="24/7" label="Available" delay={0.3} />
+            <StatCard number="8" label="Service lines" />
+            <StatCard number="24h" label="First reply" delay={0.1} />
+            <StatCard number="100%" label="Code ownership" delay={0.2} />
+            <StatCard number="Fixed" label="Price quotes" delay={0.3} />
           </div>
         </div>
       </section>
@@ -151,9 +152,9 @@ const PremiumHome = () => {
       <section className="section section-muted">
         <div className="container-custom">
           <SectionHeading
-            eyebrow="Why Aventix"
-            title="Why Choose Aventix?"
-            description="A focused studio that treats your product like our own"
+            eyebrow="How we work"
+            title="Engineering You Can Rely On"
+            description="The practices behind every project we ship, from the first commit to the handover"
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -336,7 +337,7 @@ const PremiumHome = () => {
               <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {included.map((item) => (
                   <li key={item} className="flex items-center justify-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                    <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-300">
+                    <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-secondary-100 dark:bg-secondary-400/15 text-secondary-700 dark:text-secondary-300">
                       <FiCheck size={12} strokeWidth={3} />
                     </span>
                     {item}
