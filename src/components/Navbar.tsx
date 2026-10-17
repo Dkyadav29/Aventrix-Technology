@@ -126,7 +126,7 @@ const Navbar = () => {
                   end={link.href === '/'}
                   className={({ isActive }) =>
                     `relative block px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                      isActive ? 'text-primary-300' : 'text-gray-300 hover:text-white'
+                      isActive ? 'text-secondary-300' : 'text-gray-300 hover:text-primary-400'
                     }`
                   }
                 >
@@ -135,7 +135,7 @@ const Navbar = () => {
                       {isActive && (
                         <motion.span
                           layoutId="nav-active-pill"
-                          className="absolute inset-0 rounded-full bg-primary-400/15"
+                          className="absolute inset-0 rounded-full bg-secondary-400/15"
                           transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                         />
                       )}
@@ -196,7 +196,7 @@ const Navbar = () => {
                       className={({ isActive }) =>
                         `flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-colors ${
                           isActive
-                            ? 'bg-primary-400/15 text-primary-300'
+                            ? 'bg-secondary-400/15 text-secondary-300'
                             : 'text-gray-200 hover:bg-white/5 hover:text-white active:bg-white/10'
                         }`
                       }

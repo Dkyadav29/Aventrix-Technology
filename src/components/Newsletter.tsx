@@ -52,7 +52,7 @@ const Newsletter = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="inline-flex items-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-6 py-4 font-medium text-emerald-300"
+                  className="inline-flex items-center gap-2 rounded-xl border border-secondary-400/30 bg-secondary-400/10 px-6 py-4 font-medium text-secondary-300"
                 >
                   <FiCheckCircle size={20} />
                   Thank you for subscribing!

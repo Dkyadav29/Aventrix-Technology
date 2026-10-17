@@ -11,12 +11,12 @@ export const SITE = {
   responseTime: 'Within 24 hours',
 };
 
-// PLACEHOLDER: replace with the real profile URLs
+// PLACEHOLDER: LinkedIn, Twitter and GitHub still point at the generic sites; Instagram is real
 export const SOCIALS = [
   { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com' },
   { id: 'twitter', label: 'Twitter', href: 'https://twitter.com' },
   { id: 'github', label: 'GitHub', href: 'https://github.com' },
-  { id: 'instagram', label: 'Instagram', href: 'https://instagram.com' },
+  { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/aventix9' },
 ];
 
 export const whatsappLink = (text = 'I want to discuss my project') =>

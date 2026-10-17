@@ -1,5 +1,44 @@
 import colors from 'tailwindcss/colors'
 
+/**
+ * Brand colour system (single source of truth).
+ *
+ *   primary   Orange  #FF6B00  calls to action, link hovers, highlights, accents
+ *   secondary Royal   #335FDC  headings, outline buttons, nav active, info surfaces
+ *   ink       #1A1A1A body text        muted  #6B7280 secondary text
+ *
+ * 500 is the brand value, 600 the hover/pressed shade, 50-100 the light tints.
+ * src/index.css exposes the same values as CSS variables (--color-primary ...)
+ * for the few places that need a raw colour (inline SVG gradients).
+ */
+const primary = {
+  50: '#FFF4EB',
+  100: '#FFE4D1',
+  200: '#FFC9A3',
+  300: '#FFA866',
+  400: '#FF8A33',
+  500: '#FF6B00',
+  600: '#E05E00',
+  700: '#B84D00',
+  800: '#8F3C00',
+  900: '#6B2D00',
+  950: '#3D1A00',
+}
+
+const secondary = {
+  50: '#EEF2FC',
+  100: '#DCE4F9',
+  200: '#BAC9F3',
+  300: '#8EA8EA',
+  400: '#5F83E2',
+  500: '#335FDC',
+  600: '#2A4FB8',
+  700: '#223F94',
+  800: '#1B3272',
+  900: '#142554',
+  950: '#0C1733',
+}
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
@@ -13,46 +52,14 @@ export default {
         xs: '480px',
       },
       colors: {
-        // Cool neutrals that sit better next to the sky/violet brand colors
+        // Cool neutral ramp for borders, subtle backgrounds and dark-mode surfaces
         gray: colors.slate,
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
-        },
-        secondary: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
-          950: '#2e1065',
-        },
-        dark: {
-          50: '#f9fafb',
-          100: '#f3f4f6',
-          200: '#e5e7eb',
-          300: '#d1d5db',
-          400: '#9ca3af',
-          500: '#6b7280',
-          600: '#4b5563',
-          700: '#374151',
-          800: '#1f2937',
-          900: '#111827',
-        },
+        primary,
+        secondary,
+        ink: '#1A1A1A',
+        muted: '#6B7280',
+        // Third-party brand colour, used only on WhatsApp buttons
+        whatsapp: { DEFAULT: '#1fa855', dark: '#178f47' },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
@@ -60,8 +67,8 @@ export default {
       },
       boxShadow: {
         card: '0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12)',
-        'card-hover': '0 2px 4px rgb(15 23 42 / 0.04), 0 24px 48px -20px rgb(2 132 199 / 0.35)',
-        glow: '0 10px 40px -10px rgb(14 165 233 / 0.55)',
+        'card-hover': `0 2px 4px rgb(15 23 42 / 0.04), 0 24px 48px -20px ${secondary[500]}59`,
+        glow: `0 10px 40px -10px ${primary[500]}8C`,
       },
       animation: {
         blob: 'blob 7s infinite',

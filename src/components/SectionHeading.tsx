@@ -31,7 +31,7 @@ const SectionHeading = ({
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-secondary-700 dark:text-white">
         {title}
       </h2>
       {description && (

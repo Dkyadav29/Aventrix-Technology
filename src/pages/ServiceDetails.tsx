@@ -87,7 +87,7 @@ const ServiceDetails = () => {
 
       {/* Hero Section */}
       <section className="dark relative overflow-hidden bg-gray-950 text-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-[#0a1230] to-gray-950" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-secondary-950 to-gray-950" aria-hidden="true" />
         <div className="absolute inset-0 bg-grid mask-fade opacity-60" aria-hidden="true" />
         <div className="absolute -top-40 -right-32 h-[28rem] w-[28rem] rounded-full bg-primary-500/25 blur-3xl" aria-hidden="true" />
 
@@ -158,7 +158,7 @@ const ServiceDetails = () => {
               <ul className="space-y-4">
                 {service.benefits.map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-700 dark:text-emerald-300">
+                    <span className="mt-0.5 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-secondary-100 dark:bg-secondary-400/15 text-secondary-700 dark:text-secondary-300">
                       <FiCheck size={14} strokeWidth={3} aria-hidden="true" />
                     </span>
                     <span className="text-gray-700 dark:text-gray-200">{benefit}</span>

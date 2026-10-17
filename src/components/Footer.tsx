@@ -40,13 +40,13 @@ const SOCIAL_ICONS: Record<string, IconType> = {
 const socials = SOCIALS.map((s) => ({ ...s, icon: SOCIAL_ICONS[s.id] }));
 
 const linkClass =
-  'inline-block text-sm text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-200';
+  'inline-block text-sm text-gray-400 hover:text-primary-400 hover:translate-x-1 transition-all duration-200';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="dark relative overflow-hidden bg-gray-950 text-gray-100 border-t border-white/10">
+    <footer className="dark relative overflow-hidden bg-secondary-950 text-gray-100 border-t border-white/10">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/60 to-transparent" aria-hidden="true" />
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-80 w-[40rem] rounded-full bg-primary-600/10 blur-3xl" aria-hidden="true" />
 
@@ -83,7 +83,7 @@ const Footer = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-10 w-10 rounded-full border border-white/10 bg-white/5 text-gray-300 hover:bg-gradient-to-br hover:from-primary-500 hover:to-secondary-600 hover:text-white hover:border-transparent flex items-center justify-center transition-all duration-300"
+                  className="h-10 w-10 rounded-full border border-white/10 bg-white/5 text-gray-300 hover:bg-primary-500 hover:text-white hover:border-transparent flex items-center justify-center transition-all duration-300"
                   aria-label={label}
                 >
                   <Icon size={18} />
@@ -141,7 +141,7 @@ const Footer = () => {
               <li>
                 <a
                   href={`mailto:${SITE.email}`}
-                  className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors break-all"
+                  className="flex items-center gap-2.5 text-gray-400 hover:text-primary-400 transition-colors break-all"
                 >
                   <FiMail size={16} className="flex-shrink-0 text-primary-400" />
                   {SITE.email}
@@ -150,7 +150,7 @@ const Footer = () => {
               <li>
                 <a
                   href={SITE.phoneHref}
-                  className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-gray-400 hover:text-primary-400 transition-colors"
                 >
                   <FiPhone size={16} className="flex-shrink-0 text-primary-400" />
                   {SITE.phoneDisplay}
@@ -161,9 +161,9 @@ const Footer = () => {
                   href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 text-gray-400 hover:text-primary-400 transition-colors"
                 >
-                  <FaWhatsapp size={16} className="flex-shrink-0 text-emerald-400" />
+                  <FaWhatsapp size={16} className="flex-shrink-0 text-secondary-400" />
                   Chat on WhatsApp
                 </a>
               </li>
@@ -175,16 +175,16 @@ const Footer = () => {
         <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-400">
           <p>&copy; {currentYear} Aventix. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="hover:text-white transition-colors">
+            <Link to="/privacy" className="hover:text-primary-400 transition-colors">
               Privacy
             </Link>
-            <Link to="/terms" className="hover:text-white transition-colors">
+            <Link to="/terms" className="hover:text-primary-400 transition-colors">
               Terms
             </Link>
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-primary-400 transition-colors"
             >
               Back to Top
               <FiArrowUp size={14} />

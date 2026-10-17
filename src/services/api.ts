@@ -26,7 +26,8 @@ const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.response.use(
   (response: any) => response,
   (error: any) => {
-    console.error('API Error:', error);
+    // Callers decide how to surface failures; only echo them to the console during development
+    if (import.meta.env.DEV) console.error('API Error:', error);
     return Promise.reject(error);
   }
 );

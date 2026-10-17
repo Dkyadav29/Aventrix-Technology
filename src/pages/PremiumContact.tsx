@@ -264,7 +264,7 @@ const PremiumContact = () => {
               </ul>
 
               <p className="mt-8 inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                <FiCheckCircle className="text-emerald-500" aria-hidden="true" />
+                <FiCheckCircle className="text-secondary-500" aria-hidden="true" />
                 We reply to every enquiry {SITE.responseTime.toLowerCase()}.
               </p>
 
@@ -312,7 +312,7 @@ const PremiumContact = () => {
               <div className="surface p-6 md:p-10">
                 {outcome ? (
                   <div role="status" className="py-8 text-center">
-                    <span className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-400/15 text-emerald-600 dark:text-emerald-300">
+                    <span className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-secondary-100 dark:bg-secondary-400/15 text-secondary-600 dark:text-secondary-300">
                       <FiCheckCircle size={32} />
                     </span>
                     {outcome === 'api' ? (

@@ -28,21 +28,21 @@ const Chart = () => (
   <svg viewBox="0 0 300 90" className="h-24 w-full" preserveAspectRatio="none">
     <defs>
       <linearGradient id="hero-chart-fill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.35" />
-        <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
+        <stop offset="0%" stopColor="var(--color-secondary)" stopOpacity="0.35" />
+        <stop offset="100%" stopColor="var(--color-secondary)" stopOpacity="0" />
       </linearGradient>
       <linearGradient id="hero-chart-line" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stopColor="#38bdf8" />
-        <stop offset="100%" stopColor="#a78bfa" />
+        <stop offset="0%" stopColor="var(--color-secondary)" />
+        <stop offset="100%" stopColor="var(--color-primary)" />
       </linearGradient>
     </defs>
     {[20, 40, 60].map((y) => (
-      <line key={y} x1="0" x2="300" y1={y} y2={y} stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+      <line key={y} x1="0" x2="300" y1={y} y2={y} stroke="white" strokeOpacity="0.06" strokeWidth="1" />
     ))}
     <path d={`${CHART_PATH} L 300 90 L 0 90 Z`} fill="url(#hero-chart-fill)" />
     <path d={CHART_PATH} fill="none" stroke="url(#hero-chart-line)" strokeWidth="2.5" strokeLinecap="round" />
-    <circle cx="300" cy="10" r="4" fill="#38bdf8" />
-    <circle cx="300" cy="10" r="8" fill="#38bdf8" fillOpacity="0.25" />
+    <circle cx="300" cy="10" r="4" fill="var(--color-primary)" />
+    <circle cx="300" cy="10" r="8" fill="var(--color-primary)" fillOpacity="0.25" />
   </svg>
 );
 
@@ -60,7 +60,7 @@ const FloatingCard = ({
   <motion.div
     animate={{ y: [0, -8, 0] }}
     transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
-    className={`absolute z-20 hidden sm:flex items-center gap-3 rounded-2xl border border-white/15 bg-[#0d1528]/95 px-4 py-3 shadow-2xl shadow-black/40 backdrop-blur-xl ${className}`}
+    className={`absolute z-20 hidden sm:flex items-center gap-3 rounded-2xl border border-white/15 bg-secondary-950/95 px-4 py-3 shadow-2xl shadow-black/40 backdrop-blur-xl ${className}`}
   >
     {children}
   </motion.div>
@@ -70,7 +70,7 @@ const HeroDashboard = () => (
   <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
     {/* Glow behind the product */}
     <div
-      className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(56,189,248,0.22),transparent_70%)] blur-2xl"
+      className="absolute -inset-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,theme(colors.secondary.400/25%),transparent_70%)] blur-2xl"
       aria-hidden="true"
     />
 
@@ -79,14 +79,14 @@ const HeroDashboard = () => (
       transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       className="relative"
     >
-      <div className="relative rounded-3xl border border-white/10 bg-[#0b1220]/90 shadow-[0_30px_80px_-20px_rgba(2,8,23,0.9)] backdrop-blur-xl lg:[transform:perspective(1400px)_rotateY(-5deg)_rotateX(2deg)]">
+      <div className="relative rounded-3xl border border-white/10 bg-secondary-950/90 shadow-[0_30px_80px_-20px_theme(colors.black/80%)] backdrop-blur-xl lg:[transform:perspective(1400px)_rotateY(-5deg)_rotateX(2deg)]">
         {/* Header */}
         {/* Left padding on sm+ leaves room for the floating "API Connected" card over this corner */}
         <div className="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-4 sm:pl-48">
           <div className="flex items-center gap-3 min-w-0">
             <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-secondary-600 text-white">
               <svg viewBox="0 0 64 64" className="h-4 w-4" aria-hidden="true">
-                <path d="M16 46 L32 16 L48 46 L41 46 L32 28 L23 46 Z" fill="#fff" />
+                <path d="M16 46 L32 16 L48 46 L41 46 L32 28 L23 46 Z" fill="white" />
               </svg>
             </span>
             <div className="min-w-0">
@@ -94,10 +94,10 @@ const HeroDashboard = () => (
               <p className="text-[11px] text-gray-400 leading-tight">Demo workspace</p>
             </div>
           </div>
-          <span className="inline-flex flex-shrink-0 items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[11px] font-medium text-emerald-300">
+          <span className="inline-flex flex-shrink-0 items-center gap-2 rounded-full border border-secondary-400/20 bg-secondary-400/10 px-3 py-1 text-[11px] font-medium text-secondary-300">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="absolute inline-flex h-full w-full rounded-full bg-secondary-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-secondary-400" />
             </span>
             All systems operational
           </span>
@@ -114,7 +114,7 @@ const HeroDashboard = () => (
                     <span className="text-primary-300">{m.icon}</span>
                   </div>
                   <p className="mt-2 font-display text-2xl font-extrabold text-white leading-none">{m.value}</p>
-                  <p className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium text-emerald-300">
+                  <p className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium text-secondary-300">
                     <FiArrowUpRight size={11} />
                     {m.delta}
                   </p>
@@ -159,7 +159,7 @@ const HeroDashboard = () => (
                 {integrations.map((i) => (
                   <li key={i.name} className="flex items-center justify-between text-xs">
                     <span className="flex items-center gap-2 text-gray-200">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-secondary-400" />
                       {i.name}
                     </span>
                     <span className="text-[10px] text-gray-500">{i.status}</span>
@@ -171,7 +171,7 @@ const HeroDashboard = () => (
             <div className={`${panel} p-4 mt-auto`}>
               <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold text-white">Deployment</p>
-                <span className="rounded-md bg-emerald-400/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-300">
+                <span className="rounded-md bg-secondary-400/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-secondary-300">
                   LIVE
                 </span>
               </div>
@@ -187,7 +187,7 @@ const HeroDashboard = () => (
 
     {/* Floating status cards */}
     <FloatingCard className="-left-3 -top-4 lg:-left-6" duration={6}>
-      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-300">
+      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary-400/15 text-secondary-300">
         <FiCheck size={18} />
       </span>
       <div>
@@ -202,14 +202,14 @@ const HeroDashboard = () => (
       </span>
       <div>
         <p className="text-sm font-semibold text-white leading-tight">AI Automation</p>
-        <p className="text-[11px] font-medium text-emerald-300">+34.8%</p>
+        <p className="text-[11px] font-medium text-secondary-300">+34.8%</p>
       </div>
     </FloatingCard>
 
     <FloatingCard className="-bottom-6 left-10 lg:left-6" duration={7}>
       <span className="relative flex h-2.5 w-2.5">
-        <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+        <span className="absolute inline-flex h-full w-full rounded-full bg-secondary-400 opacity-75 animate-ping" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-secondary-400" />
       </span>
       <div>
         <p className="text-sm font-semibold text-white leading-tight">Deployment</p>
